@@ -5,11 +5,11 @@ import streamlit as st
 st.set_page_config(page_title="Xesh", page_icon="")
 
 # Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
-adrenaline d attaque = "https://raw.githubusercontent.com/votre-pseudo/Codex-Xesh/main/logo_xesh.png"
-blocage = 
-touche critique =
-adrenaline de defense =
-touche =
+adrenaline d attaque = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp"
+blocage = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp"
+touche critique = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp"
+adrenaline de defense = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp"
+touche = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp"
 
 # On définit le style une fois pour toute l'app
 st.markdown("""
