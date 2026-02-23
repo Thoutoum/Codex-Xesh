@@ -1,3 +1,4 @@
+
 import streamlit as st
 
 # Configuration de l'interface
@@ -11,8 +12,8 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("ASSISTANT pour Star Wars Légion")
-st.write("Thoutoum")
+st.title("XESH")
+st.write("développé par Thoutoum")
 
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
@@ -197,7 +198,7 @@ MOTS_CLES = {
 }
 
 # --- INTERFACE ---
-st.title("ASSISTANT SWL")
+st.title("Assistant pour Star Wars Légion")
 st.subheader("Base de données version 11/11/2025")
 
 # Barre de recherche avec autocomplétion
@@ -214,4 +215,3 @@ st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", wi
 st.sidebar.markdown("### **Xesh**")
 st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
 st.sidebar.write("👤 **Thoutoum")
-
