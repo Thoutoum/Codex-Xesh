@@ -1,7 +1,7 @@
 import streamlit as st
 
 # Configuration de l'interface
-st.set_page_config(page_title="ASSISTANT SWL", page_icon="⚔️")
+st.set_page_config(page_title="Xesh", page_icon="")
 
 # --- STYLE VISUEL XESH ---
 st.markdown("""
@@ -11,7 +11,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-st.title("ASSISTANT SWL")
+st.title("ASSISTANT pour Star Wars Légion")
 st.write("Thoutoum")
 
 
@@ -198,7 +198,7 @@ MOTS_CLES = {
 
 # --- INTERFACE ---
 st.title("ASSISTANT SWL")
-st.subheader("Base de données optimisée pour XX")
+st.subheader("Base de données version 11/11/2025")
 
 # Barre de recherche avec autocomplétion
 search_term = st.selectbox("Sélectionnez ou tapez un mot-clé :", [""] + sorted(list(MOTS_CLES.keys())))
@@ -211,7 +211,7 @@ if search_term:
 
 # --- PIED DE PAGE ---
 st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", width=50)
-st.sidebar.markdown("### **Escouade Xesh**")
+st.sidebar.markdown("### **Xesh**")
 st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
-st.sidebar.write("👤 **Commandante :** Xelena Xesh")
+st.sidebar.write("👤 **Thoutoum")
 
