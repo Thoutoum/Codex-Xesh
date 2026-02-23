@@ -4,11 +4,18 @@ import streamlit as st
 # Configuration de l'interface
 st.set_page_config(page_title="Xesh", page_icon="")
 
-# --- STYLE VISUEL XESH ---
+# Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
+adrenaline d attaque = "https://raw.githubusercontent.com/votre-pseudo/Codex-Xesh/main/logo_xesh.png"
+blocage = 
+touche critique =
+adrenaline de defense =
+touche =
+
+# On définit le style une fois pour toute l'app
 st.markdown("""
     <style>
     .main { background-color: #0e1117; }
-    .stTextInput > div > div > input { color: #FFD700; }
+    .icon { width: 18px; vertical-align: middle; margin-bottom: 3px; }
     </style>
     """, unsafe_allow_html=True)
 
