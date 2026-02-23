@@ -19,15 +19,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-def xesh_text(texte):
-    # On remplace automatiquement des codes simples par des images
-    t = texte.replace("[adrenaline_attaque]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true" class="icon">')
-    t = texte.replace("[blocage]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true" class="icon">')
-    t = texte.replace("[touche_critique]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp?raw=true" class="icon">')
-    t = texte.replace("[adrenaline_defense]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp?raw=true" class="icon">')
-    t = texte.replace("[touche]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp?raw=true" class="icon">')
-  
-    return st.markdown(t, unsafe_allow_html=True)
+
 
 st.title("XESH")
 st.write("développé par Thoutoum")
@@ -213,6 +205,16 @@ MOTS_CLES = {
 
 
 }
+
+def xesh_text(texte):
+    # On remplace automatiquement des codes simples par des images
+    t = texte.replace("[adrenaline_attaque]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true" class="icon">')
+    t = texte.replace("[blocage]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true" class="icon">')
+    t = texte.replace("[touche_critique]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp?raw=true" class="icon">')
+    t = texte.replace("[adrenaline_defense]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp?raw=true" class="icon">')
+    t = texte.replace("[touche]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp?raw=true" class="icon">')
+  
+    return st.markdown(t, unsafe_allow_html=True)
 
 # --- INTERFACE ---
 st.title("Assistant pour Star Wars Légion")
