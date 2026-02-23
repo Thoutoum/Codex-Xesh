@@ -8,7 +8,7 @@ st.set_page_config(page_title="Xesh", page_icon="")
 adrenaline_attaque = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true"
 blocage = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true"
 touche_critique = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp?raw=true"
-adrenaline_defense = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp"
+adrenaline_defense = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp?raw=true"
 touche = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp"
 
 # On définit le style une fois pour toute l'app
