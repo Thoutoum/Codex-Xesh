@@ -4,6 +4,8 @@ import streamlit as st
 # Configuration de l'interface
 st.set_page_config(page_title="Xesh", page_icon="Attack_surge.webp")
 
+st.image("https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true", caption="Escouade Xesh en formation")
+
 # Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
 adrenaline_attaque = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true"
 blocage = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true"
