@@ -2,7 +2,7 @@
 import streamlit as st
 
 # Configuration de l'interface
-st.set_page_config(page_title="Xesh", page_icon="")
+st.set_page_config(page_title="Xesh", page_icon="https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true")
 
 # Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
 adrenaline_attaque = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true"
