@@ -22,7 +22,9 @@ st.markdown("""
   
 st.title("XESH")
 st.write("développé par Thoutoum")
-  
+
+st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp", width=30)
+
 def xesh_text(texte):
     # 1. On définit l'URL de base
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
