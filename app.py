@@ -246,8 +246,12 @@ search_term = st.selectbox("Sélectionnez ou tapez un mot-clé :", [""] + sorted
 if search_term:
     st.divider()
     st.header(f"🔍 {search_term}")
-    # Rendu propre des textes avec sauts de lignes
-    st.info(MOTS_CLES[search_term].replace("\n", "  \n"))
+    
+    # Récupération de la description
+    description = MOTS_CLES[search_term]
+    
+    # ✅ Appel de la fonction magique
+    xesh_text(description)
 
 # --- PIED DE PAGE ---
 st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", width=50)
