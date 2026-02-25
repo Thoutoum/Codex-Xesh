@@ -22,7 +22,7 @@ col1, col2, col3 = st.columns([1, 2, 1])
 
 with col2:
     # L'image sera centrée dans cette colonne
-    st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/triangle_orange.webp", use_container_width=True)
+    st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", use_container_width=True)
     
     # Le titre avec du HTML pour le centrer parfaitement
     st.markdown("<h1 style='text-align: center;'>XESH</h1>", unsafe_allow_html=True)
