@@ -21,12 +21,18 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
         
-  
-st.title("XESH")
-st.write("développé par Thoutoum")
+# On crée 3 colonnes : [vide, contenu, vide]
+# Les chiffres (1, 2, 1) définissent la largeur relative
+col1, col2, col3 = st.columns([1, 2, 1])
 
-st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp", width=30)
-
+with col2:
+    # L'image sera centrée dans cette colonne
+    st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", use_container_width=True)
+    
+    # Le titre avec du HTML pour le centrer parfaitement
+    st.markdown("<h1 style='text-align: center;'>XESH</h1>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center;'>Développé par Thoutoum</p>", unsafe_allow_html=True)  
+    
 def xesh_text(texte):
     # 1. Base URL de Thoutoum
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
