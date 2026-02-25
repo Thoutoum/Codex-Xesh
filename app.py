@@ -258,6 +258,8 @@ st.sidebar.markdown("### **Xesh**")
 st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
 st.sidebar.write("👤 **Thoutoum")
 
+# Cette ligne est INDISPENSABLE avant le bloc d'erreur
+query = st.text_input("Rechercher un mot-clé ou une règle :")
 # --- 2. L'affichage (à la fin de ton code) ---
 if query:
     # On cherche les résultats
