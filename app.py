@@ -257,3 +257,14 @@ st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", wi
 st.sidebar.markdown("### **Xesh**")
 st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
 st.sidebar.write("👤 **Thoutoum")
+
+# --- 2. L'affichage (à la fin de ton code) ---
+if query:
+    # On cherche les résultats
+    resultats = {k: v for k, v in data.items() if query.lower() in k.lower()}
+    
+    for nom, description in resultats.items():
+        with st.expander(nom):
+            # ❌ NE PAS UTILISER : st.write(description)
+            # ✅ UTILISER LA FONCTION :
+            xesh_text(description)
