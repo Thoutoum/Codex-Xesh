@@ -46,7 +46,7 @@ def xesh_text(texte):
     t = t.replace("[BLOCK]", "[BLOCK]")
     t = t.replace("[HIT]", "[HIT]")
     t = t.replace("[CRIT]", "[CRIT]")
-    t = t.replace("[D-SURGE]", "[D-SURGE]")
+    t = t.replace("[D-SURGE]", "🛡️")
     t = t.replace("[A-SURGE]", "[A-SURGE]")
     
     return st.markdown(t, unsafe_allow_html=True)
