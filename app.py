@@ -21,21 +21,10 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
         
-
-    for tag, fichier in icones.items():
-        url = f"{base}{fichier}"
-        # Remplacement par la balise HTML stylisée
-        html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
-        t = t.replace(tag, html)
-    
-
-
-
+  
 st.title("XESH")
 st.write("développé par Thoutoum")
-
-
-    
+  
 
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
@@ -220,17 +209,28 @@ MOTS_CLES = {
 }
 
 def xesh_text(texte):
-    # Base URL du dépôt de Thoutoum
+    # 1. Base URL du dépôt de Thoutoum
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
-     # Remplacements standards pour les jetons de jeu
-    t = texte 
-    t = t.replace("[BLOCK]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp")
-    t = t.replace("[HIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Hit.webp")
-    t = t.replace("[CRIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Critical_hit.webp")
-    t = t.replace("[D-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp")
-    t = t.replace("[A-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp")
+    
+    # 2. On définit les correspondances entre les tags et les fichiers
+    icones = {
+        "[BLOCK]": "Block.webp",
+        "[HIT]": "Hit.webp",
+        "[CRIT]": "Critical_hit.webp",
+        "[D-SURGE]": "Defense_surge.webp",
+        "[D_SURGE]": "Defense_surge.webp", # Sécurité pour votre base de données
+        "[A-SURGE]": "Attack_surge.webp"
+    }
+    
+    t = texte
+    # 3. On boucle pour transformer les tags en images HTML
+    for tag, fichier in icones.items():
+        url = f"{base}{fichier}"
+        html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
+        t = t.replace(tag, html)
+    
+    # 4. Rendu final (UNE SEULE FOIS à la fin de la fonction)
     return st.markdown(t, unsafe_allow_html=True)
-
 # --- INTERFACE ---
 st.title("Assistant pour Star Wars Légion")
 st.subheader("Base de données version 11/11/2025")
