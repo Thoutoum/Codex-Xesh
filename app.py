@@ -32,9 +32,7 @@ def xesh_text(texte):
     t = t.replace("[D-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp")
     t = t.replace("[A-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp")
     return st.markdown(t, unsafe_allow_html=True)
-    
-    }
-    
+        
     t = texte
     for tag, fichier in icones.items():
         url = f"{base}{fichier}"
