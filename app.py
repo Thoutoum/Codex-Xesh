@@ -7,11 +7,11 @@ st.set_page_config(page_title="Xesh", page_icon="Attack_surge.webp")
 st.image("https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true", caption="Escouade Xesh en formation")
 
 # Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
-adrenaline_attaque = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true"
-blocage = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true"
-touche_critique = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp?raw=true"
-adrenaline_defense = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp?raw=true"
-touche = "https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp?raw=true"
+adrenaline_attaque = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp"
+blocage = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp"
+touche_critique = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Critical_hit.webp"
+adrenaline_defense = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp"
+touche = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Hit.webp"
 
 # On définit le style une fois pour toute l'app
 st.markdown("""
@@ -22,13 +22,31 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 def xesh_text(texte):
-    # On remplace automatiquement des codes simples par des images
-    t = texte.replace("[adrenaline_attaque]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Attack_surge.webp?raw=true" class="icon">')
-    t = texte.replace("[blocage]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Block.webp?raw=true" class="icon">')
-    t = texte.replace("[touche_critique]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Critical_hit.webp?raw=true" class="icon">')
-    t = texte.replace("[adrenaline_defense]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Defense_surge.webp?raw=true" class="icon">')
-    t = texte.replace("[touche]", f'<img src="https://github.com/Thoutoum/Codex-Xesh/blob/main/Hit.webp?raw=true" class="icon">')
-  
+    # Base URL du dépôt de Thoutoum
+    base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
+    
+    # Mapping complet des icônes de l'Escouade
+    # Note : Vérifiez bien les majuscules (Block.webp vs Hit.webp)
+    icones = {
+        "[BLOCK]": "Block.webp",
+        "[HIT]": "Hit.webp",
+        "[CRIT]": "Critical_hit.webp",
+        "[D-SURGE]": "Defense_surge.webp",
+        "[A-SURGE]": "Attack_surge.webp"
+    }
+    
+    t = texte
+    for tag, fichier in icones.items():
+        url = f"{base}{fichier}"
+        # Remplacement par la balise HTML stylisée
+        html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
+        t = t.replace(tag, html)
+    
+    # Remplacements standards pour les jetons de jeu
+    t = t.replace("[ADRE]", "⚡")
+    t = t.replace("[VISE]", "🎯")
+    t = t.replace("[ESQUIVE]", "🛡️")
+    
     return st.markdown(t, unsafe_allow_html=True)
 
 
@@ -38,7 +56,7 @@ st.write("développé par Thoutoum")
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
 MOTS_CLES = {
-"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [blocage] : [adrenaline_defense]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé Critique 2.", 
+"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé Critique 2.", 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.", 
 "AGUERRI": "Après qu'une unité dotée de ce mot-clé a effectué au cours de son activation une action Se déplacer, elle peut effectuer une action Attaquer gratuite. Pendant cette action Attaquer, elle ne peut ajouter que des armes à distance aux réserves d'attaques.",
 "AIDE : AFFILIATION": "Lorsqu'une unité dotée de CE mot-clé est censée gagner un pion Viser, Esquive ou Adrénaline, une autre unité alliée de l'affiliation ou du type spécifié à PORTÉE 2 et en LdV peut gagner ce pion à la place. Dans ce cas, l'unité dotée de CE mot-clé gagne un pion Suppression.", 
