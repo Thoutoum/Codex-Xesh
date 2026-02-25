@@ -21,7 +21,7 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
         
-    t = texte
+
     for tag, fichier in icones.items():
         url = f"{base}{fichier}"
         # Remplacement par la balise HTML stylisée
