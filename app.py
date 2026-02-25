@@ -42,6 +42,12 @@ def xesh_text(texte):
         html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
         t = t.replace(tag, html)
     
+
+
+
+st.title("XESH")
+st.write("développé par Thoutoum")
+
     # Remplacements standards pour les jetons de jeu
     t = t.replace("[BLOCK]", "[BLOCK]")
     t = t.replace("[HIT]", "[HIT]")
@@ -49,11 +55,6 @@ def xesh_text(texte):
     t = t.replace("[D-SURGE]", "🛡️")
     t = t.replace("[A-SURGE]", "[A-SURGE]")
     
-    return st.markdown(t, unsafe_allow_html=True)
-
-
-st.title("XESH")
-st.write("développé par Thoutoum")
 
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
@@ -237,7 +238,7 @@ MOTS_CLES = {
 
 }
 
-
+    return st.markdown(t, unsafe_allow_html=True)
 
 # --- INTERFACE ---
 st.title("Assistant pour Star Wars Légion")
@@ -257,16 +258,3 @@ st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", wi
 st.sidebar.markdown("### **Xesh**")
 st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
 st.sidebar.write("👤 **Thoutoum")
-
-# Cette ligne est INDISPENSABLE avant le bloc d'erreur
-query = st.text_input("Rechercher un mot-clé ou une règle :")
-# --- 2. L'affichage (à la fin de ton code) ---
-if query:
-    # On cherche les résultats
-    resultats = {k: v for k, v in data.items() if query.lower() in k.lower()}
-    
-    for nom, description in resultats.items():
-        with st.expander(nom):
-            # ❌ NE PAS UTILISER : st.write(description)
-            # ✅ UTILISER LA FONCTION :
-            xesh_text(description)
