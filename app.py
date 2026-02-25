@@ -217,9 +217,9 @@ def xesh_text(texte):
         "[BLOCK]": "Block.webp",
         "[HIT]": "Hit.webp",
         "[CRIT]": "Critical_hit.webp",
-        "[D-SURGE]": "Defense_surge.webp",
+        "[D_SURGE]": "Defense_surge.webp",
         "[D_SURGE]": "Defense_surge.webp", # Sécurité pour votre base de données
-        "[A-SURGE]": "Attack_surge.webp"
+        "[A_SURGE]": "Attack_surge.webp"
     }
     
     t = texte
