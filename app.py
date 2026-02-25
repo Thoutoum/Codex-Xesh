@@ -23,11 +23,31 @@ st.markdown("""
 st.title("XESH")
 st.write("développé par Thoutoum")
   
+def xesh_text(texte):
+    # 1. On définit l'URL de base
+    base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
+    
+    # 2. On prépare le texte
+    t = texte
+    
+    # 3. Remplacement du tag [BLOCK] par la balise IMAGE HTML
+    # C'est cette balise <img> qui force l'affichage de l'icône
+    if "[BLOCK]" in t:
+        url_block = f"{base}Block.webp"
+        img_html = f'<img src="{url_block}" width="20" style="vertical-align: middle;">'
+        t = t.replace("[BLOCK]", img_html)
 
+    # 4. On fait pareil pour les autres si besoin
+    if "[D_SURGE]" in t:
+        url_dsurge = f"{base}Defense_surge.webp"
+        t = t.replace("[D_SURGE]", f'<img src="{url_dsurge}" width="20" style="vertical-align: middle;">')
+
+    # 5. L'affichage CRUCIAL avec unsafe_allow_html=True
+    return st.markdown(t, unsafe_allow_html=True)
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
 MOTS_CLES = {
-"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : BLOCK. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé Critique 2.", 
+"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK] . Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé Critique 2.", 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.", 
 "AGUERRI": "Après qu'une unité dotée de ce mot-clé a effectué au cours de son activation une action Se déplacer, elle peut effectuer une action Attaquer gratuite. Pendant cette action Attaquer, elle ne peut ajouter que des armes à distance aux réserves d'attaques.",
 "AIDE : AFFILIATION": "Lorsqu'une unité dotée de CE mot-clé est censée gagner un pion Viser, Esquive ou Adrénaline, une autre unité alliée de l'affiliation ou du type spécifié à PORTÉE 2 et en LdV peut gagner ce pion à la place. Dans ce cas, l'unité dotée de CE mot-clé gagne un pion Suppression.", 
@@ -206,27 +226,7 @@ MOTS_CLES = {
 
 }
 
-def xesh_text(texte):
-    # 1. On définit l'URL de base
-    base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
-    
-    # 2. On prépare le texte
-    t = texte
-    
-    # 3. Remplacement du tag [BLOCK] par la balise IMAGE HTML
-    # C'est cette balise <img> qui force l'affichage de l'icône
-    if "[BLOCK]" in t:
-        url_block = f"{base}Block.webp"
-        img_html = f'<img src="{url_block}" width="20" style="vertical-align: middle;">'
-        t = t.replace("[BLOCK]", img_html)
 
-    # 4. On fait pareil pour les autres si besoin
-    if "[D_SURGE]" in t:
-        url_dsurge = f"{base}Defense_surge.webp"
-        t = t.replace("[D_SURGE]", f'<img src="{url_dsurge}" width="20" style="vertical-align: middle;">')
-
-    # 5. L'affichage CRUCIAL avec unsafe_allow_html=True
-    return st.markdown(t, unsafe_allow_html=True)
     
 # --- INTERFACE ---
 st.title("Assistant pour Star Wars Légion")
