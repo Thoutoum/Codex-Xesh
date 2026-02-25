@@ -20,18 +20,6 @@ st.markdown("""
     .icon { width: 18px; vertical-align: middle; margin-bottom: 3px; }
     </style>
     """, unsafe_allow_html=True)
-
-def xesh_text(texte):
-    # Base URL du dépôt de Thoutoum
-    base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
-     # Remplacements standards pour les jetons de jeu
-    t = texte 
-    t = t.replace("[BLOCK]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp")
-    t = t.replace("[HIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Hit.webp")
-    t = t.replace("[CRIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Critical_hit.webp")
-    t = t.replace("[D-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp")
-    t = t.replace("[A-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp")
-    return st.markdown(t, unsafe_allow_html=True)
         
     t = texte
     for tag, fichier in icones.items():
@@ -231,7 +219,17 @@ MOTS_CLES = {
 
 }
 
-
+def xesh_text(texte):
+    # Base URL du dépôt de Thoutoum
+    base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
+     # Remplacements standards pour les jetons de jeu
+    t = texte 
+    t = t.replace("[BLOCK]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp")
+    t = t.replace("[HIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Hit.webp")
+    t = t.replace("[CRIT]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Critical_hit.webp")
+    t = t.replace("[D-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp")
+    t = t.replace("[A-SURGE]", "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp")
+    return st.markdown(t, unsafe_allow_html=True)
 
 # --- INTERFACE ---
 st.title("Assistant pour Star Wars Légion")
