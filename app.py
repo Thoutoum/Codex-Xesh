@@ -26,25 +26,31 @@ st.write("développé par Thoutoum")
 st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp", width=30)
 
 def xesh_text(texte):
-    # 1. On définit l'URL de base
+    # 1. Base URL de Thoutoum
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
     
-    # 2. On prépare le texte
-    t = texte
+    # 2. On prépare la liste des remplacements
+    # Note : On met bien les noms EXACTS des fichiers sur GitHub
+    icones = {
+        "[BLOCK]": "Block.webp",
+        "[HIT]": "Hit.webp",
+        "[CRIT]": "Critical_hit.webp",
+        "[D_SURGE]": "Defense_surge.webp",
+        "[A-SURGE]": "Attack_surge.webp"
+    }
     
-    # 3. Remplacement du tag [BLOCK] par la balise IMAGE HTML
-    # C'est cette balise <img> qui force l'affichage de l'icône
-    if "[BLOCK]" in t:
-        url_block = f"{base}Block.webp"
-        img_html = f'<img src="{url_block}" width="20" style="vertical-align: middle;">'
-        t = t.replace("[BLOCK]", img_html)
-
-    # 4. On fait pareil pour les autres si besoin
-    if "[D_SURGE]" in t:
-        url_dsurge = f"{base}Defense_surge.webp"
-        t = t.replace("[D_SURGE]", f'<img src="{url_dsurge}" width="20" style="vertical-align: middle;">')
-
-    # 5. L'affichage CRUCIAL avec unsafe_allow_html=True
+    t = texte
+    # 3. On remplace chaque tag par sa balise <img ...>
+    for tag, fichier in icones.items():
+        url = f"{base}{fichier}"
+        # On crée le code HTML pour l'image
+        img_html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
+        t = t.replace(tag, img_html)
+    
+    # 4. On ajoute les petits emojis texte si besoin
+    t = t.replace("[ADRE]", "⚡").replace("[VISE]", "🎯").replace("[ESQUIVE]", "🛡️")
+    
+    # 5. L'AFFICHAGE (Le secret est le unsafe_allow_html=True)
     return st.markdown(t, unsafe_allow_html=True)
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS (Extraits du Rulebook) ---
