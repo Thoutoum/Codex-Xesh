@@ -18,8 +18,6 @@ with col2:
     st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", use_container_width=True)
     
     # Le titre avec du HTML pour le centrer parfaitement
-    st.markdown("<h1 style='text-align: center;'>XESH</h1>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center;'>Développé par Thoutoum</p>", unsafe_allow_html=True)  
     st.markdown("""
     <style>
     .version-text {
