@@ -5,7 +5,7 @@ import streamlit as st
 st.markdown("""
     <style>
     .main { background-color: #0e1117; }
-    .icon { width: 3px; vertical-align: middle; margin-bottom: 3px; }
+    .icon { width: 18px; vertical-align: middle; margin-bottom: 3px; }
     </style>
     """, unsafe_allow_html=True)
         
@@ -161,9 +161,9 @@ MOTS_CLES = {
 
 "ENTOURAGE : NOM D'UNITÉ": "Pendant la création d'armée, si un joueur inclut une unité dotée de CE mot-clé, une unité spécifiée par le mot-clé Entourage ne compte pas dans le nombre maximal d'unités de son rang pouvant être incluses. Un joueur peut donc inclure plus d'unités d'un rang spécifique qu'autorisé par les prérequis de rang. Lors de la Phase de Commandement, pendant l'étape « Nommer des Commandants et donner des ordres », une unité dotée de CE mot-clé peut donner un ordre à une unité alliée à PORTÉE 2 portant le nom spécifié par CE mot-clé. De plus, l'unité spécifiée par CE mot-clé ignore le prérequis de rang [TROUPIER] pour prêter main-forte à l'unité dotée du mot-clé Entourage. Par exemple, le Directeur Orson Krennic est doté du mot-clé Entourage : Death Troopers. Si une armée inclut le Directeur Orson Krennic, 1 unité de Death Troopers de la même armée ne compte pas dans le nombre maximal d'unités du rang forces spéciales autorisé dans l'armée, ce qui permet au joueur d'inclure jusqu'à trois autres unités de forces spéciales en plus des Death Troopers. Lors de la Phase de Commandement, le Directeur Orson Krennic peut donner un ordre à une unité de Death Troopers à 2.", 
 
-"ÉQUIPE": "Pendant la création d'armée, si un joueur inclut une unité dotée de CE mot-clé, cette unité doit s'équiper des améliorations spécifiées après le mot-clé.", 
+"EQUIPE": "Pendant la création d'armée, si un joueur inclut une unité dotée de CE mot-clé, cette unité doit s'équiper des améliorations spécifiées après le mot-clé.", 
 
-"ÉQUIPE AVEC ARME LOURDE": "Une unité dotée de CE mot-clé doit s'équiper d'une carte Amélioration. La figurine ajoutée à l'unité grâce à cette carte Amélioration devient le Chef d'unité.", 
+"EQUIPE AVEC ARME LOURDE": "Une unité dotée de CE mot-clé doit s'équiper d'une carte [ARME_LOURDE]. La figurine ajoutée à l'unité grâce à cette carte Amélioration devient le Chef d'unité.", 
 
 "ÉQUIPE D'ÉCLAIREURS X": "Pendant la mise en place, le joueur contrôlant une unité dotée de CE mot-clé peut choisir jusqu'à X unités de soldats alliées appartenant à la même faction ou affiliation que cette unité et qui ne sont pas dotées du mot-clé Éclaireur. Chaque unité choisie gagne le mot-clé Éclaireur X jusqu'à la fin de la partie, X étant égal à la valeur d'Éclaireur X de l'unité dotée du mot-clé Équipe d'Éclaireurs X.",  
 
@@ -299,7 +299,7 @@ MOTS_CLES = {
 
 "RETRAIT": "Tant qu'une unité de soldats dotée de CE mot-clé est engagée avec une seule unité ennemie, elle peut effectuer des déplacements normalement.", 
 
-"RIPOSTE GRADUÉE X": "Pendant la création d'armée, une unité dotée de CE mot-clé doit s'équiper de X [ARME LOURDE].", 
+"RIPOSTE GRADUÉE X": "Pendant la création d'armée, une unité dotée de CE mot-clé doit s'équiper de X [ARME_LOURDE].", 
 
 "SANS ENTRAVE": "Lorsqu'une unité dotée de CE mot-clé effectue un déplacement, elle ne réduit pas sa vitesse maximale pour entrer dans un terrain difficile, en sortir ou le traverser.", 
 
