@@ -1,13 +1,6 @@
 
 import streamlit as st
 
-# Définir l'icône (remplacez l'URL par celle de votre image sur GitHub)
-adrenaline_attaque = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Attack_surge.webp"
-blocage = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Block.webp"
-touche_critique = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Critical_hit.webp"
-adrenaline_defense = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Defense_surge.webp"
-touche = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Hit.webp"
-
 # On définit le style une fois pour toute l'app
 st.markdown("""
     <style>
