@@ -23,6 +23,7 @@ with col2:
     st.markdown("""
     <style>
     .version-text {
+        text-align: center;
         font-size: 1.2rem; /* Ajustez ce chiffre pour la taille */
         white-space: nowrap; 
         overflow: hidden;
