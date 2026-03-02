@@ -35,11 +35,38 @@ def xesh_text(texte):
     # 2. On prépare la liste des remplacements
     # Note : On met bien les noms EXACTS des fichiers sur GitHub
     icones = {
-        "[BLOCK]": "Block.webp",
-        "[HIT]": "Hit.webp",
-        "[CRIT]": "Critical_hit.webp",
-        "[D_SURGE]": "Defense_surge.webp",
-        "[A_SURGE]": "Attack_surge.webp"
+    # Symboles des dés
+    "[BLOCK]": "Block.webp",
+    "[HIT]": "Hit.webp",
+    "[CRIT]": "Critical_hit.webp",
+    "[D_SURGE]": "Defense_surge.webp",
+    "[A_SURGE]": "Attack_surge.webp"
+    # Symboles unités
+    "[COMMANDANT]": "COMMANDANT.webp",    
+    "[AGENT]": "AGENT.webp",
+    "[TROUPIER]": "TROUPIER.webp",
+    "[FORCE_SPECIALE]": "FORCE_SPECIALE.webp",
+    "[SOUTIEN]": "SOUTIEN.webp",
+    "[LOURD]": "LOURD.webp",     
+    # Symboles amélioration
+    "[ARMEMENT]": "ARMEMENT.webp",
+    "[ARME_LOURDE]": "ARME_LOURDE.webp",
+    "[ARTILLERIE]": "ARTILLERIE.webp",
+    "[CHEF_ESCOUADE]": "CHEF_ESCOUADE.webp",
+    "[COMM]": "COMM.webp",      
+    "[COMMANDEMENT]": "COMMANDEMENT.webp",  
+    "[DOCTRINE]": "DOCTRINE.webp",
+    "[ENTRAINEMENT]": "ENTRAINEMENT.webp", 
+    "[EQUIPAGE]": "EQUIPAGE.webp",    
+    "[EQUIPEMENT]": "EQUIPEMENT.webp",   
+    "[FORCE]": "FORCE.webp",
+    "[GENERATEUR]": "GENERATEUR.webp",
+    "[GRENADE]": "GRENADE.webp",   
+    "[PERSONNEL]": "PERSONNEL.webp",  
+    "[PILOTE]": "PILOTE.webp",  
+    "[POINT_ACCROCHE]": "POINT_ACCROCHE.webp",
+    "[PROGRAMMATION]": "PROGRAMMATION.webp",
+       
     }
     
     t = texte
@@ -49,10 +76,7 @@ def xesh_text(texte):
         # On crée le code HTML pour l'image
         img_html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
         t = t.replace(tag, img_html)
-    
-    # 4. On ajoute les petits emojis texte si besoin
-    t = t.replace("[ADRE]", "⚡").replace("[VISE]", "🎯").replace("[ESQUIVE]", "🛡️")
-    
+        
     # 5. L'AFFICHAGE (Le secret est le unsafe_allow_html=True)
     return st.markdown(t, unsafe_allow_html=True)
 
