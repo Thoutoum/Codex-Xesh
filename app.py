@@ -457,7 +457,7 @@ if search_term:
     xesh_text(description)
 
 # --- PIED DE PAGE ---
-st.sidebar.image("https://img.icons8.com/ios-filled/100/ffd700/triangle.png", width=50)
-st.sidebar.markdown("### **Xesh**")
-st.sidebar.write(f"📂 **Archives :** {len(MOTS_CLES)} entrées")
-st.sidebar.write("👤 **Thoutoum")
+st.sidebar.divider() # Ajoute une ligne de séparation élégante
+st.sidebar.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/triangle_orange.webp", width=50)
+st.sidebar.markdown(f"**Codex Xesh** - {len(MOTS_CLES)} entrées")
+st.sidebar.caption("Développé par Thoutoum")
