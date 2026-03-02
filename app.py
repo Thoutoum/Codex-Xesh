@@ -442,12 +442,6 @@ MOTS_CLES = {
 
 }
 
-
-    
-# --- INTERFACE ---
-st.title("Assistant pour Star Wars Légion")
-st.subheader("Base de données version 11/11/2025")
-
 # Barre de recherche avec autocomplétion
 search_term = st.selectbox("Sélectionnez ou tapez un mot-clé :", [""] + sorted(list(MOTS_CLES.keys())))
 
