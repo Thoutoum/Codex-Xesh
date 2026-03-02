@@ -20,6 +20,19 @@ with col2:
     # Le titre avec du HTML pour le centrer parfaitement
     st.markdown("<h1 style='text-align: center;'>XESH</h1>", unsafe_allow_html=True)
     st.markdown("<p style='text-align: center;'>Développé par Thoutoum</p>", unsafe_allow_html=True)  
+    st.markdown("""
+    <style>
+    .version-text {
+        font-size: 1.2rem; /* Ajustez ce chiffre pour la taille */
+        white-space: nowrap; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-weight: 400;
+        color: #A0A0A0; /* Gris discret style impérial */
+    }
+    </style>
+    <p class="version-text">Base de données version 11/11/2025</p>
+    """, unsafe_allow_html=True)
     
 def xesh_text(texte):
     # 1. Base URL de Thoutoum
