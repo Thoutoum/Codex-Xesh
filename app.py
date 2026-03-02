@@ -456,6 +456,6 @@ if search_term:
 
 # --- PIED DE PAGE ---
 st.sidebar.divider() # Ajoute une ligne de séparation élégante
-st.sidebar.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/triangle_orange.webp", width=50)
+st.sidebar.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", width=50)
 st.sidebar.markdown(f"**Codex Xesh** - {len(MOTS_CLES)} entrées")
 st.sidebar.caption("Développé par Thoutoum")
