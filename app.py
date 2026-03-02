@@ -40,7 +40,7 @@ def xesh_text(texte):
     "[HIT]": "Hit.webp",
     "[CRIT]": "Critical_hit.webp",
     "[D_SURGE]": "Defense_surge.webp",
-    "[A_SURGE]": "Attack_surge.webp"
+    "[A_SURGE]": "Attack_surge.webp",
     # Symboles unités
     "[COMMANDANT]": "COMMANDANT.webp",    
     "[AGENT]": "AGENT.webp",
