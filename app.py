@@ -5,7 +5,7 @@ import streamlit as st
 st.markdown("""
     <style>
     .main { background-color: #0e1117; }
-    .icon { width: 18px; vertical-align: middle; margin-bottom: 3px; }
+    .icon { width: 9px; vertical-align: middle; margin-bottom: 3px; }
     </style>
     """, unsafe_allow_html=True)
         
