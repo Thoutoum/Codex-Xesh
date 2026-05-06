@@ -115,7 +115,9 @@ MOTS_CLES = {
 
 "ATTAQUE IMPETUEUSE": "Au début de son activation, une unité dotée de CE mot-clé peut augmenter ou diminuer sa vitesse maximale de 1 jusqu'à la fin de cette activation.", 
 
-"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. Pour chaque unité à PORTÉE 1 et en LdV, lancez X dés d'attaque noir, en résolvant entièrement chaque jet avant de passer à l'unité suivante. L'unité visée subit 1 blessure pour chaque résultat [A-SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.", 
+"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant
+entièrement chaque jet avant de passer à l'unité suivante. L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu.
+Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.", 
 
 "AUTONOME : PION X/ACTION": "Au début de la Phase d'Activation, si une unité dotée de CE mot-clé ne possède pas de pion Ordre, cette unité peut gagner X pions spécifiés ou effectuer l'action spécifiée en tant qu'action gratuite.", 
 
@@ -127,7 +129,7 @@ MOTS_CLES = {
 
 "BOUCLIER X": "Une unité dotée de CE mot-clé possède X pions Bouclier. Les pions Bouclier appartiennent à l'unité et ne sont pas attribués individuellement à des figurines. Si une unité gagne le mot-clé Bouclier X, elle gagne X pions Bouclier. De même, si une unité perd le mot-clé Bouclier X, elle perd X pions Bouclier. Les pions Bouclier sont recto verso : un côté actif et un côté inactif. Ils entrent toujours en jeu côté actif visible, sur le champ de bataille et à côté de l'unité à laquelle ils appartiennent. Lorsqu'une unité retourne un pion Bouclier actif, ce pion devient inactif. Lorsqu'une unité retourne un pion inactif, ce dernier redevient actif. Tant qu'elle défend contre une attaque à distance, pendant l'étape « Modifier les dés d'attaque », une unité en défense peut retourner n'importe quel nombre de ses pions Bouclier actifs sur leur côté inactif afin d'annuler un résultat [HIT] ou [CRIT] par pion Bouclier ainsi retourné.", 
 
-"CACHE": "Pendant la mise en place, une unité équipée d'une carte Amélioration dotée de CE mot-clé place le ou les pions indiqués sur la carte où figure le mot-clé Cache. L'unité peut dépenser ces pions, même si une ou plusieurs des figurines ajoutées à l'unité grâce à cette carte sont vaincues.", 
+"CACHE": "Pendant la mise en place, une unité équipée d'une carte Amélioration dotée de CE mot-clé place le ou les pions indiqués sur la carte où figure le mot-clé Cache. L’unité peut dépenser ces pions, même si une ou plusieurs des figurines ajoutées à l'unité grâce à cette carte sont vaincues.", 
 
 "CALCUL DE PROBABILITES": "En tant qu'action de carte, une unité dotée de CE mot-clé peut choisir une unité de soldats alliée à PORTÉE 2 et en LdV : cette dernière gagne un pion Viser, un pion Esquive et un pion Suppression.", 
 
@@ -233,11 +235,14 @@ MOTS_CLES = {
 
 "INTUITION DU DANGER X": "Lorsqu'une unité dotée de CE mot-clé est censée retirer n'importe quel nombre de ses pions Suppression, elle peut choisir de ne pas retirer jusqu'à X pions, y compris zéro. Tant qu'une unité dotée de CE mot-clé défend contre une attaque, elle lance un dé de défense supplémentaire pendant l'étape « Lancer les dés de défense » pour chaque pion Suppression qu'elle possède, jusqu'à X dés supplémentaires.", 
 
-"JE FAIS AUSSI PARTIE DE L'EQUIPE": "Une unité dotée de CE mot-clé conteste un pion Objectif si son Chef d'unité se trouve à PORTÉE 1 de ce pion, au lieu de PORTEE 1/2.",  
+"JE FAIS AUSSI PARTIE DE L'EQUIPE": "Une unité dotée de CE mot-clé conteste un pion Objectif si son Chef d'unité se trouve à PORTÉE 1 de ce pion, au lieu de PORTEE 1/2.",
+
+"JE SENS LE PROFIT": "Lorsque la valeur X est présente dans les mots-clés ou statistiques d'une unité dotée de CE mot-clé (SUR SA CARTE d'UNITE), X est égal au nombre de points lumineux figurant sur la carte Commandement que le joueur contrôlant cette unité a jouée et révélée le plus récemment lors de cette partie, jusqu'à un minimum de 1. Si le joueur n'a pas encore joué et révélé de carte Commandement, considérez X comme 1.",
 
 "LA MORT VENUE DU CIEL": "Lorsqu'une unité dotée de CE mot-clé attaque, l'unité en défense ne peut pas utiliser un couvert pour annuler les résultats [HIT] au cours de l'étape « Appliquer le couvert » si le Chef de l'unité attaquante chevauche un élément de terrain non en zone d'une hauteur supérieure à tout terrain que le Chef de l'unité en défense chevauche.", 
 
-"LONGUEUR D'AVANCE": "Si une ou plusieurs unités alliées sont dotées de CE mot-clé, pendant l'étape Résoudre les cartes Commandement, après avoir révélé les cartes Commandement mais avant d'en résoudre les effets, si le nombre de points lumineux présents sur les cartes Commandement révélées ne correspond pas, 1 unité alliée dotée de CE mot-clé et se trouvant sur le champ de bataille peut effectuer un déplacement à vitesse 1. Si le nombre de points lumineux correspond, et qu'il y a 1 ou plusieurs unités alliées dotées de CE mot-clé sur le champ de bataille, choisissez une unité alliée se trouvant sur le champ de bataille. L'unité choisie peut effectuer un déplacement à vitesse 1.", 
+"LONGUEUR D'AVANCE": "Si une ou plusieurs unités alliées sont dotées de CE mot-clé, pendant l'étape Résoudre les cartes Commandement, après avoir révélé les cartes Commandement mais avant d'en résoudre les effets, si le nombre de points lumineux présents sur les cartes Commandement révélées ne correspond pas, 1 unité
+alliée dotée de CE mot-clé et se trouvant sur le champ de bataille peut effectuer un déplacement à vitesse 1. Si le nombre de points lumineux correspond, et qu'il y a 1 ou plusieurs unités alliées dotées CE mot-clé sur le champ de bataille, choisissez une unité alliée se trouvant sur le champ de bataille. L'unité choisie peut effectuer un déplacement à vitesse 1.", 
 
 "MAITRE CONTEUR": "Lorsqu'une unité effectue l'action de carte Maître Conteur, elle choisit jusqu'à X unités [EWOKS] alliées à PORTÉE 2, X étant égal au numéro du round en cours. Chaque unité choisie gagne 2 pions Adrénaline.", 
 
@@ -253,7 +258,9 @@ MOTS_CLES = {
 
 "MAITRISE DU MAKASHI": "Tant qu'une unité dotée de CE mot-clé effectue une attaque au corps-à-corps, pendant l'étape « Choisir les armes et rassembler les dés », elle peut réduire de 1 la valeur de Perforant X d'une arme de la réserve d'attaque. Dans ce cas, le défenseur ne peut pas utiliser les mots-clés Immunité : perforant au corps-à-corps, Immunité : perforant et Insensible au cours de cette attaque.", 
 
-"MAITRISE DU SHIEN": "Lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Déflexion, l'attaquant subit 1 blessure pour chaque résultat [D_SURGE] du jet de défense à la place de toute autre blessure que le mot-clé Déflexion aurait dû provoquer. De plus, quand une unité dotée de CE mot-clé est l'unité en défense d'une attaque à distance, si elle ne subit pas de blessures lors de cette attaque, elle ne gagne pas de pion Suppression pendant l'étape « Attribuer un pion Suppression au défenseur » de cette attaque.", 
+"MAITRISE DU SHIEN": "Lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Déflexion, l'attaquant subit 1 blessure pour chaque résultat [D_SURGE] du jet de défense à la place de toute autre blessure que le mot-clé Déflexion aurait dû provoquer. De plus, quand
+une unité dotée de CE mot-clé est l'unité en défense d'une attaque à distance, si elle ne subit pas de blessures lors de cette attaque, elle ne gagne pas de pion Suppression pendant l'étape « Attribuer un pion Suppression au défenseur »
+de cette attaque.", 
 
 "MAITRISE DU SORESU": "Lorsqu'une unité dotée de CE mot-clé défend contre une attaque à distance, elle peut relancer tous ses dés de défense au cours de l'étape « Relancer les dés de défense ». De plus, lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Gardien X, elle peut dépenser un pion Esquive avant de convertir les résultats [D_SURGE]. Dans ce cas, elle relance tous ses dés de défense avant de convertir les résultats [D_SURGE]. Chaque dé ne peut pas être relancé plus d'une fois grâce à Maîtrise du Soresu.", 
 
@@ -268,6 +275,10 @@ MOTS_CLES = {
 "METTRE A COUVERT X": "En tant qu'action de carte, une unité dotée de CE mot-clé peut choisir jusqu'à X unités alliées à PORTÉE 2. Chaque unité choisie gagne un pion Esquive.", 
 
 "MISSION SECRETE": "Au début de chaque Phase de Commandement, si une unité dotée de CE mot-clé se trouve intégralement en territoire ennemi, elle gagne un pion Mission secrète. Une unité ne peut gagner qu'un seul pion Mission secrète lors de la partie. Au moment de marquer des PV, si un joueur contrôle une ou plusieurs unités ayant un pion Mission secrète et que ces unités se trouvent intégralement en territoire ennemi, ce joueur peut décider de retirer ces pions Mission secrète. Il marque 1 PV pour chaque pion Mission secrète ainsi retiré.", 
+
+"MOBILE": "Lorsqu'une unité ayant un socle avec encoches dotée de CE mot-clé effectue un déplacement, elle saute l'étape 1 de la section « Déplacement des socles avec encoches », consistant à tourner le socle du Chef d'unité.<br>
+Une unité dotée de CE mot-clé doit effectuer une action Se déplacer obligatoire gratuite au début ou à la fin de son étape « Effectuer des actions ». <br> Une unité dotée de CE mot-clé ne
+peut pas reculer.",
 
 "MOBILITE DIFFICILE": "Pendant son activation, une unité dotée de CE mot-clé ne peut effectuer qu'une action Se déplacer.", 
 
