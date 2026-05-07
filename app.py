@@ -287,6 +287,8 @@ MOTS_CLES = {
 
 "ORDRE DIRECT : NOM/TYPE D'UNITE": "Lors de chaque Phase de Commandement, pendant l'étape « Nommer des Commandants et donner des ordres », une unité dotée de CE mot-clé peut donner un ordre à une unité alliée à PORTEE 2 portant le nom ou étant du type spécifié.", 
 
+"PILOTAGE DE VÉHICULE X": "Une unité alliée à PORTEE 3 d'une unité dotée de CE mot-clé peut considérer son COURAGE comme X lorsqu'elle vérifie si elle est paniquée.",
+    
 "PISTOLERO": "Lorsqu'une unité dotée de CE mot-clé effectue son étape « Déclarer un défenseur supplémentaire », elle peut déclarer un défenseur supplémentaire et créer une réserve d'attaque consistant uniquement en une arme à distance qui a déjà été ajoutée à une autre réserve d'attaque. Le mot-clé Pistolero ne peut être utilisé qu'une fois par séquence d'attaque.", 
 
 "PIVOT COMPLET": "Lorsqu'une unité dotée de CE mot-clé pivote, elle peut pivoter jusqu'à 360°.", 
@@ -295,7 +297,7 @@ MOTS_CLES = {
 
 "POSITION PREPAREE": "Pendant l'étape « Se déployer sur les positions préparées » de la mise en place, une unité dotée de CE mot-clé peut se déployer en plaçant son Chef d'unité intégralement en territoire allié. Ensuite, les figurines restantes de l'unité sont placées en cohésion avec leur Chef d'unité et intégralement en territoire allié. Cette unité gagne ensuite 1 pion Esquiver. Les figurines ne peuvent pas chevaucher un terrain infranchissable lorsqu'elles sont placées en utilisant Position Préparée.", 
 
-"POUVOIR LATENT": "À la fin de l'activation d'une unité dotée de CE mot-clé, elle peut gagner 1 pion Suppression afin de lancer 1 dé de défense rouge. Dans ce cas, sur un résultat [D_SURGE], choisissez une unité ennemie à PORTEE 1 de cette figurine. L'unité choisie gagne 2 pions Suppression et 2 pions Immobilisation. Sur un résultat vierge, retirez 1 pion Blessure ou Poison d'une unité de soldats non-droïde alliée à PORTEE 1 de cette figurine.", 
+"POUVOIR LATENT": "À la fin de l'activation d'une unité dotée de CE mot-clé, elle peut gagner 1 pion Suppression afin de lancer 1 dé de défense rouge. Dans ce cas, <br>Sur un résultat [D_SURGE], choisissez une unité ennemie à PORTEE 1 de cette figurine. L'unité choisie gagne 2 pions Suppression et 2 pions Immobilisation. <br>Sur un résultat vierge, retirez 1 pion Blessure ou Poison d'une unité de soldats non-droïde alliée à PORTEE 1 de cette figurine.", 
 
 "PRECIS X": "Lorsqu'une unité attaquante dotée de CE mot-clé dépense un pion Viser pendant l'étape « Relancer les dés d'attaque », elle peut relancer jusqu'à X dés d'attaque supplémentaires par pion Viser dépensé.", 
 
@@ -337,10 +339,12 @@ MOTS_CLES = {
 
 "SUSTENTATION : TERRESTRE/ AERIENNE X": "Une unité dotée de CE mot-clé peut effectuer des actions Attendre pendant l'étape « Effectuer des actions » et peut gagner et dépenser des pions En attente. Une unité dotée de CE mot-clé peut reculer. Une unité dotée du mot-clé Sustentation : terrestre X est considérée comme un véhicule terrestre par les autres unités pour vérifier la LdV. Pour tous les autres effets de jeu, l'unité reste considérée comme un véhicule à répulseurs. Une unité dotée du mot-clé Sustentation : aérienne X ignore le terrain de hauteur X ou moins lorsqu'elle se déplace et peut terminer un déplacement en chevauchant un tel terrain.", 
 
-"DERAPER": "Si l'unité dotée du mot-clé Sustentation : terrestre/aérienne X a un socle avec encoches latérales, l'unité peut déraper grâce à une action Se déplacer. Déraper est un déplacement normal pour une figurine ayant un socle avec encoches et s'effectue comme tel, à l'exception des points suivants : • Pour effectuer un dérapage complet, au lieu de placer le gabarit de déplacement dans l'encoche avant du socle du Chef de l'unité, placez-le dans une des encoches latérales. Ensuite, déplacez la figurine et placez son encoche latérale opposée à l'autre extrémité du gabarit de déplacement. • Pour effectuer un dérapage partiel, au lieu de placer le gabarit de déplacement dans l'encoche avant du socle du Chef de l'unité au début du déplacement, placez-le dans une des encoches latérales. À la fin d'un dérapage partiel, la figurine doit être placée de telle sorte que la ligne reliant les deux encoches latérales (sur son socle) soit parallèle à la section du gabarit de déplacement que la figurine a atteinte à la fin de son déplacement. • Lorsqu'elle dérape, une unité réduit de 1 sa vitesse, jusqu'à un minimum de 1.", 
+"DERAPER": "Si l'unité dotée du mot-clé Sustentation : terrestre/aérienne X a un socle avec encoches latérales, l'unité peut déraper grâce à une action Se déplacer. Déraper est un déplacement normal pour une figurine ayant un socle avec encoches et s'effectue comme tel, à l'exception des points suivants : <br>• Pour effectuer un dérapage complet, au lieu de placer le gabarit de déplacement dans l'encoche avant du socle du Chef de l'unité, placez-le dans une des encoches latérales. Ensuite, déplacez la figurine et placez son encoche latérale opposée à l'autre extrémité du gabarit de déplacement. <br>• Pour effectuer un dérapage partiel, au lieu de placer le gabarit de déplacement dans l'encoche avant du socle du Chef de l'unité au début du déplacement, placez-le dans une des encoches latérales. À la fin d'un dérapage partiel, la figurine doit être placée de telle sorte que la ligne reliant les deux encoches latérales (sur son socle) soit parallèle à la section du gabarit de déplacement que la figurine a atteinte à la fin de son déplacement. <br>• Lorsqu'elle dérape, une unité réduit de 1 sa vitesse, jusqu'à un minimum de 1.", 
 
 "TACTICIEN X": "CE mot-clé permet à une unité de gagner un nombre de pions Viser égal à X chaque fois qu'elle effectue un déplacement normal lors d'une action ou d'une action gratuite.", 
 
+"TENIR BON": "Tant qu'une unité dotée du mot-clé Tenir Bon est engagée, elle gagne [A_SURGE] : [HIT] et [D_SURGE] : [BLOCK].",
+    
 "TENTATION": "Si une unité alliée est vaincue par une attaque ennemie et que l'unité attaquante se trouve à PORTÉE 3 d'une unité dotée de CE mot-clé, une fois que l'attaque est résolue, cette unité dotée de CE mot-clé peut effectuer une action Attaquer gratuite ou un déplacement à vitesse 2 en ignorant le terrain difficile. Une unité ne peut utiliser CE mot-clé qu'une fois par round.", 
 
 "TIRER LES FICELLES": "Lorsqu'une unité utilise l'action de carte Tirer les Ficelles, choisissez une autre unité de soldats alliée à PORTÉE 2. L'unité choisie peut effectuer une action de carte gratuite ou une action Se déplacer gratuite.", 
@@ -361,7 +365,7 @@ MOTS_CLES = {
 
 "VIVACITE D'ESPRIT": "Lorsqu'une unité effectue l'action de carte Vivacité d'esprit, elle gagne 1 pion Viser et 1 pion Esquive.", 
 
-"ANTI-MATERIEL X": "Lorsqu'une unité défend contre une attaque dont la réserve d'attaque est dotée de CE mot-clé, si l'unité en défense est une unité de Véhicule, améliorez X des dés d'attaque de cette arme.", 
+"ANTI-MATERIEL X": "Lorsqu'une unité défend contre une attaque dont la réserve d'attaque est dotée de CE mot-clé, si l'unité en défense est une unité de Véhicule, améliorez X des dés d'attaque de cette arme", 
 
 "ANTI-PERSONNEL X": "Lorsqu'une unité défend contre une attaque dont la réserve d'attaque est dotée de CE mot-clé, si l'unité en défense est une unité de soldats, améliorez X des dés d'attaque de cette arme.", 
 
