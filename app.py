@@ -255,9 +255,7 @@ MOTS_CLES = {
 
 "MAITRISE DU MAKASHI": "Tant qu'une unité dotée de CE mot-clé effectue une attaque au corps-à-corps, pendant l'étape « Choisir les armes et rassembler les dés », elle peut réduire de 1 la valeur de Perforant X d'une arme de la réserve d'attaque. Dans ce cas, le défenseur ne peut pas utiliser les mots-clés Immunité : perforant au corps-à-corps, Immunité : perforant et Insensible au cours de cette attaque.", 
 
-"MAITRISE DU SHIEN": "Lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Déflexion, l'attaquant subit 1 blessure pour chaque résultat [D_SURGE] du jet de défense à la place de toute autre blessure que le mot-clé Déflexion aurait dû provoquer. De plus, quand
-une unité dotée de CE mot-clé est l'unité en défense d'une attaque à distance, si elle ne subit pas de blessures lors de cette attaque, elle ne gagne pas de pion Suppression pendant l'étape « Attribuer un pion Suppression au défenseur »
-de cette attaque.", 
+"MAITRISE DU SHIEN": "Lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Déflexion, l'attaquant subit 1 blessure pour chaque résultat [D_SURGE] du jet de défense à la place de toute autre blessure que le mot-clé Déflexion aurait dû provoquer. <br>De plus, quand une unité dotée de CE mot-clé est l'unité en défense d'une attaque à distance, si elle ne subit pas de blessures lors de cette attaque, elle ne gagne pas de pion Suppression pendant l'étape « Attribuer un pion Suppression au défenseur » de cette attaque.", 
 
 "MAITRISE DU SORESU": "Lorsqu'une unité dotée de CE mot-clé défend contre une attaque à distance, elle peut relancer tous ses dés de défense au cours de l'étape « Relancer les dés de défense ». De plus, lorsqu'une unité dotée de CE mot-clé utilise le mot-clé Gardien X, elle peut dépenser un pion Esquive avant de convertir les résultats [D_SURGE]. Dans ce cas, elle relance tous ses dés de défense avant de convertir les résultats [D_SURGE]. Chaque dé ne peut pas être relancé plus d'une fois grâce à Maîtrise du Soresu.", 
 
