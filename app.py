@@ -115,9 +115,8 @@ MOTS_CLES = {
 
 "ATTAQUE IMPETUEUSE": "Au début de son activation, une unité dotée de CE mot-clé peut augmenter ou diminuer sa vitesse maximale de 1 jusqu'à la fin de cette activation.", 
 
-"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant
-entièrement chaque jet avant de passer à l'unité suivante. L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu.
-Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.", 
+"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. <.> Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant
+entièrement chaque jet avant de passer à l'unité suivante. <.> L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. <.> Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.", 
 
 "AUTONOME : PION X/ACTION": "Au début de la Phase d'Activation, si une unité dotée de CE mot-clé ne possède pas de pion Ordre, cette unité peut gagner X pions spécifiés ou effectuer l'action spécifiée en tant qu'action gratuite.", 
 
