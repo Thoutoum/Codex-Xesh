@@ -115,7 +115,7 @@ MOTS_CLES = {
 
 "ATTAQUE IMPETUEUSE": "Au début de son activation, une unité dotée de CE mot-clé peut augmenter ou diminuer sa vitesse maximale de 1 jusqu'à la fin de cette activation.", 
 
-"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. <.>Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant entièrement chaque jet avant de passer à l'unité suivante. <.>L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. <.>Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.",
+"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. <br>Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant entièrement chaque jet avant de passer à l'unité suivante. <br>L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. <br>Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.",
 
 "AUTONOME : PION X/ACTION": "Au début de la Phase d'Activation, si une unité dotée de CE mot-clé ne possède pas de pion Ordre, cette unité peut gagner X pions spécifiés ou effectuer l'action spécifiée en tant qu'action gratuite.", 
 
@@ -239,8 +239,7 @@ MOTS_CLES = {
 
 "LA MORT VENUE DU CIEL": "Lorsqu'une unité dotée de CE mot-clé attaque, l'unité en défense ne peut pas utiliser un couvert pour annuler les résultats [HIT] au cours de l'étape « Appliquer le couvert » si le Chef de l'unité attaquante chevauche un élément de terrain non en zone d'une hauteur supérieure à tout terrain que le Chef de l'unité en défense chevauche.", 
 
-"LONGUEUR D'AVANCE": "Si une ou plusieurs unités alliées sont dotées de CE mot-clé, pendant l'étape Résoudre les cartes Commandement, après avoir révélé les cartes Commandement mais avant d'en résoudre les effets, si le nombre de points lumineux présents sur les cartes Commandement révélées ne correspond pas, 1 unité
-alliée dotée de CE mot-clé et se trouvant sur le champ de bataille peut effectuer un déplacement à vitesse 1. Si le nombre de points lumineux correspond, et qu'il y a 1 ou plusieurs unités alliées dotées CE mot-clé sur le champ de bataille, choisissez une unité alliée se trouvant sur le champ de bataille. L'unité choisie peut effectuer un déplacement à vitesse 1.", 
+"LONGUEUR D'AVANCE": "Si une ou plusieurs unités alliées sont dotées de CE mot-clé, pendant l'étape Résoudre les cartes Commandement, après avoir révélé les cartes Commandement mais avant d'en résoudre les effets, si le nombre de points lumineux présents sur les cartes Commandement révélées ne correspond pas, 1 unité alliée dotée de CE mot-clé et se trouvant sur le champ de bataille peut effectuer un déplacement à vitesse 1. Si le nombre de points lumineux correspond, et qu'il y a 1 ou plusieurs unités alliées dotées CE mot-clé sur le champ de bataille, choisissez une unité alliée se trouvant sur le champ de bataille. L'unité choisie peut effectuer un déplacement à vitesse 1.", 
 
 "MAITRE CONTEUR": "Lorsqu'une unité effectue l'action de carte Maître Conteur, elle choisit jusqu'à X unités [EWOKS] alliées à PORTÉE 2, X étant égal au numéro du round en cours. Chaque unité choisie gagne 2 pions Adrénaline.", 
 
@@ -274,9 +273,7 @@ de cette attaque.",
 
 "MISSION SECRETE": "Au début de chaque Phase de Commandement, si une unité dotée de CE mot-clé se trouve intégralement en territoire ennemi, elle gagne un pion Mission secrète. Une unité ne peut gagner qu'un seul pion Mission secrète lors de la partie. Au moment de marquer des PV, si un joueur contrôle une ou plusieurs unités ayant un pion Mission secrète et que ces unités se trouvent intégralement en territoire ennemi, ce joueur peut décider de retirer ces pions Mission secrète. Il marque 1 PV pour chaque pion Mission secrète ainsi retiré.", 
 
-"MOBILE": "Lorsqu'une unité ayant un socle avec encoches dotée de CE mot-clé effectue un déplacement, elle saute l'étape 1 de la section « Déplacement des socles avec encoches », consistant à tourner le socle du Chef d'unité.<br>
-Une unité dotée de CE mot-clé doit effectuer une action Se déplacer obligatoire gratuite au début ou à la fin de son étape « Effectuer des actions ». <br> Une unité dotée de CE mot-clé ne
-peut pas reculer.",
+"MOBILE": "Lorsqu'une unité ayant un socle avec encoches dotée de CE mot-clé effectue un déplacement, elle saute l'étape 1 de la section « Déplacement des socles avec encoches », consistant à tourner le socle du Chef d'unité.<br>Une unité dotée de CE mot-clé doit effectuer une action Se déplacer obligatoire gratuite au début ou à la fin de son étape « Effectuer des actions ». <br> Une unité dotée de CE mot-clé ne peut pas reculer.",
 
 "MOBILITE DIFFICILE": "Pendant son activation, une unité dotée de CE mot-clé ne peut effectuer qu'une action Se déplacer.", 
 
