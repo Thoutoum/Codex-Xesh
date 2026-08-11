@@ -273,7 +273,7 @@ MOTS_CLES = {
 
 "MARCHE FORCEE": "Lorsqu'une unité dotée de CE mot-clé se déplace, son contrôleur peut lui attribuer un pion Suppression afin d'augmenter de 1 sa vitesse maximale pour ce déplacement, jusqu'à un maximum de 3. Lorsqu'une unité se déplace, appliquez tout effet qui augmente sa vitesse maximale avant d'appliquer les effets qui réduisent la vitesse maximale de cette unité. <br><i>Par exemple, une unité ayant normalement une vitesse maximale de 1, mais qui possède 1 pion Immobilisation, peut utiliser le mot-clé Marche Forcée pour effectuer un déplacement d'une vitesse maximale totale de 1. Néanmoins, une unité ayant normalement une vitesse maximale de 1, mais qui possède 2 pions Immobilisation, ne peut pas utiliser le mot-clé Marche Forcée pour effectuer un déplacement car sa vitesse maximale sera alors égale à 0.</i>", 
 
-"MATAMORE": "Lorsqu’une unité dotée de CE mot-clé dépense au moins 1 pion Viser lors d’une action Attaquer, après que l’effet a été résolu, elle gagne 1 pion Esquive."
+"MATAMORE": "Lorsqu’une unité dotée de CE mot-clé dépense au moins 1 pion Viser lors d’une action Attaquer, après que l’effet a été résolu, elle gagne 1 pion Esquive.",
     
 "MERCENAIRE : FACTION": "Une unité dotée de CE mot-clé est une unité de mercenaire. La ou les factions spécifiées par CE mot-clé peuvent inclure cette unité dans une armée en tant qu'unité de mercenaire.", 
 
