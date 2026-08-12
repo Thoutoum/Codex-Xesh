@@ -1,0 +1,14 @@
+[server]
+# Maintient la connexion active sur mobile avec des pings fréquents
+pingInterval = 10
+pingTimeout = 30
+
+# Économise les ressources du serveur
+runOnSave = false
+
+[browser]
+# Désactive la collecte de statistiques inutiles
+gatherUsageStats = false
+
+[theme]
+base = "dark"
