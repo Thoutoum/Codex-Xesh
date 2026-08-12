@@ -25,9 +25,11 @@ def aller_a_la_recherche():
 def aller_a_l_accueil():
     st.session_state.page = "accueil"
 
+def reinitialiser_recherche():
+    st.session_state.mot_cle_selectionne = ""
+
 
 # --- MOTEUR DE RENDU EN CACHE (OPTIMISATION MOBILE) ---
-# Le décorateur @st.cache_data conserve le résultat HTML en mémoire.
 @st.cache_data
 def get_xesh_html(texte):
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
@@ -75,7 +77,6 @@ def get_xesh_html(texte):
     return t
 
 def xesh_text(texte):
-    # Appel de la fonction optimisée en cache
     html_prepare = get_xesh_html(texte)
     return st.markdown(html_prepare, unsafe_allow_html=True)
 
@@ -492,7 +493,7 @@ if st.session_state.page == "accueil":
     st.write("")
     st.write("")
     
-    # Bouton grand format ergonomique pour mobile
+    # Bouton d'accès principal
     st.button("🔍 Accéder au Codex", on_click=aller_a_la_recherche, use_container_width=True, type="primary")
 
 
@@ -501,7 +502,7 @@ if st.session_state.page == "accueil":
 # ==========================================
 elif st.session_state.page == "recherche":
     
-    # Bandeau supérieur compact pour maximiser l'espace écran
+    # En-tête compact
     col_nav, col_titre = st.columns([1, 5])
     with col_nav:
         st.button("🏠", on_click=aller_a_l_accueil, help="Retour à l'accueil")
@@ -510,10 +511,22 @@ elif st.session_state.page == "recherche":
         
     st.divider()
     
-    # Sélectionneur de mot-clé
-    search_term = st.selectbox("Sélectionnez ou tapez un mot-clé :", [""] + sorted(list(MOTS_CLES.keys())))
+    # Alignement du menu de sélection et du bouton de réinitialisation
+    col_search, col_reset = st.columns([5, 1], vertical_alignment="bottom")
     
+    with col_search:
+        search_term = st.selectbox(
+            "Sélectionnez ou tapez un mot-clé :",
+            [""] + sorted(list(MOTS_CLES.keys())),
+            key="mot_cle_selectionne"
+        )
+        
+    with col_reset:
+        st.button("❌", on_click=reinitialiser_recherche, help="Effacer la recherche", use_container_width=True)
+    
+    # Affichage de la description
     if search_term:
+        st.write("")
         st.header(f"🔍 {search_term}")
         description = MOTS_CLES[search_term]
         xesh_text(description)
