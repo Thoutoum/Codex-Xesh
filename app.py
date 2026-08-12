@@ -506,8 +506,6 @@ elif st.session_state.page == "recherche":
     col_nav, col_titre = st.columns([1, 5])
     with col_nav:
         st.button("🏠", on_click=aller_a_l_accueil, help="Retour à l'accueil")
-    with col_titre:
-        st.markdown("<h3 style='margin:0; padding-top:2px;'>Codex Xesh</h3>", unsafe_allow_html=True)
         
     st.divider()
     
