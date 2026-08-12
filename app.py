@@ -502,13 +502,7 @@ if st.session_state.page == "accueil":
 # ==========================================
 elif st.session_state.page == "recherche":
     
-    # En-tête compact
-    col_nav, col_titre = st.columns([1, 5])
-    with col_nav:
-        st.button("🏠", on_click=aller_a_l_accueil, help="Retour à l'accueil")
-        
-    st.divider()
-    
+
     # Alignement du menu de sélection et du bouton de réinitialisation
     col_search, col_reset = st.columns([5, 1], vertical_alignment="bottom")
     
