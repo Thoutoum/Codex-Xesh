@@ -122,11 +122,15 @@
     </header>
 
     <div class="search-box">
-        <select id="keywordSelect" onchange="afficherRegle()">
-            <option value="">-- Choisir un mot-clé --</option>
-        </select>
-        <button class="btn-reset" onclick="reinitialiser()">❌</button>
-    </div>
+    <!-- Champ texte relié à la datalist -->
+    <input type="text" id="searchInput" list="keywordsList" placeholder="Tapez ou choisissez un mot-clé..." oninput="filtrerEtAfficher()" autocomplete="off">
+    
+    <!-- Liste des suggestions pour l'autocomplétion -->
+    <datalist id="keywordsList"></datalist>
+    
+    <!-- Bouton pour effacer -->
+    <button class="btn-reset" onclick="reinitialiser()">❌</button>
+</div>
 
     <div id="resultCard" class="card">
         <h2 id="ruleTitle"></h2>
