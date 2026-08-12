@@ -2,37 +2,36 @@ import streamlit as st
 
 # --- CONFIGURATION DE LA PAGE ---
 st.set_page_config(
-    page_title="Codex Xesh", page_icon="⚡", layout="centered"
+    page_title="Codex Xesh",
+    page_icon="⚡",
+    layout="centered"
 )
 
-# On définit le style global de l'application
-st.markdown(
-    """
+# Style global de l'application
+st.markdown("""
     <style>
     .main { background-color: #0e1117; }
     .icon { width: 18px; vertical-align: middle; margin-bottom: 3px; }
     </style>
-    """,
-    unsafe_allow_html=True,
-)
+    """, unsafe_allow_html=True)
 
 # --- GESTION DE LA NAVIGATION (SESSION STATE) ---
 if "page" not in st.session_state:
     st.session_state.page = "accueil"
 
-
 def aller_a_la_recherche():
     st.session_state.page = "recherche"
-
 
 def aller_a_l_accueil():
     st.session_state.page = "accueil"
 
 
-# --- MOTEUR DE RENDU DU TEXTE ET DES ICÔNES ---
-def xesh_text(texte):
+# --- MOTEUR DE RENDU EN CACHE (OPTIMISATION MOBILE) ---
+# Le décorateur @st.cache_data conserve le résultat HTML en mémoire.
+@st.cache_data
+def get_xesh_html(texte):
     base = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/"
-
+    
     icones = {
         # Symboles des dés
         "[BLOCK]": "Block.webp",
@@ -41,39 +40,44 @@ def xesh_text(texte):
         "[D_SURGE]": "Defense_surge.webp",
         "[A_SURGE]": "Attack_surge.webp",
         # Symboles unités
-        "[COMMANDANT]": "COMMANDANT.webp",
+        "[COMMANDANT]": "COMMANDANT.webp",    
         "[AGENT]": "AGENT.webp",
         "[TROUPIER]": "TROUPIER.webp",
         "[FORCE_SPECIALE]": "FORCE_SPECIALE.webp",
         "[SOUTIEN]": "SOUTIEN.webp",
-        "[LOURD]": "LOURD.webp",
+        "[LOURD]": "LOURD.webp",      
         # Symboles amélioration
         "[ARMEMENT]": "ARMEMENT.webp",
         "[ARME_LOURDE]": "ARME_LOURDE.webp",
         "[ARTILLERIE]": "ARTILLERIE.webp",
         "[CHEF_ESCOUADE]": "CHEF_ESCOUADE.webp",
-        "[COMM]": "COMM.webp",
-        "[COMMANDEMENT]": "COMMANDEMENT.webp",
+        "[COMM]": "COMM.webp",      
+        "[COMMANDEMENT]": "COMMANDEMENT.webp",  
         "[DOCTRINE]": "DOCTRINE.webp",
-        "[ENTRAINEMENT]": "ENTRAINEMENT.webp",
-        "[EQUIPAGE]": "EQUIPAGE.webp",
-        "[EQUIPEMENT]": "EQUIPEMENT.webp",
+        "[ENTRAINEMENT]": "ENTRAINEMENT.webp", 
+        "[EQUIPAGE]": "EQUIPAGE.webp",    
+        "[EQUIPEMENT]": "EQUIPEMENT.webp",   
         "[FORCE]": "FORCE.webp",
         "[GENERATEUR]": "GENERATEUR.webp",
-        "[GRENADE]": "GRENADE.webp",
-        "[PERSONNEL]": "PERSONNEL.webp",
-        "[PILOTE]": "PILOTE.webp",
+        "[GRENADE]": "GRENADE.webp",   
+        "[PERSONNEL]": "PERSONNEL.webp",  
+        "[PILOTE]": "PILOTE.webp",  
         "[POINT_ACCROCHE]": "POINT_ACCROCHE.webp",
         "[PROGRAMMATION]": "PROGRAMMATION.webp",
     }
-
+    
     t = texte
     for tag, fichier in icones.items():
         url = f"{base}{fichier}"
         img_html = f'<img src="{url}" width="20" style="vertical-align: middle; margin: 0 2px;">'
         t = t.replace(tag, img_html)
+        
+    return t
 
-    return st.markdown(t, unsafe_allow_html=True)
+def xesh_text(texte):
+    # Appel de la fonction optimisée en cache
+    html_prepare = get_xesh_html(texte)
+    return st.markdown(html_prepare, unsafe_allow_html=True)
 
 
 # --- BASE DE DONNÉES DES MOTS-CLÉS ---
@@ -465,67 +469,50 @@ MOTS_CLES = {
 # ECRAN 1 : ACCUEIL / SPLASH SCREEN
 # ==========================================
 if st.session_state.page == "accueil":
-
+    
     col1, col2, col3 = st.columns([1, 2, 1])
     with col2:
-        st.image(
-            "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp",
-            use_container_width=True,
-        )
-
-        st.markdown(
-            """
-            <style>
-            .version-text {
-                text-align: center;
-                font-size: 1.2rem;
-                white-space: nowrap; 
-                overflow: hidden;
-                text-overflow: ellipsis;
-                font-weight: 400;
-                color: #A0A0A0;
-            }
-            </style>
-            <p class="version-text">Base de données version 29/05/2026</p>
-            """,
-            unsafe_allow_html=True,
-        )
-
+        st.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", use_container_width=True)
+        
+        st.markdown("""
+        <style>
+        .version-text {
+            text-align: center;
+            font-size: 1.2rem;
+            white-space: nowrap; 
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 400;
+            color: #A0A0A0;
+        }
+        </style>
+        <p class="version-text">Base de données version 29/05/2026</p>
+        """, unsafe_allow_html=True)
+        
     st.write("")
     st.write("")
-
-    # Bouton grand format idéal pour écran tactile
-    st.button(
-        "🔍 Accéder au Codex",
-        on_click=aller_a_la_recherche,
-        use_container_width=True,
-        type="primary",
-    )
+    
+    # Bouton grand format ergonomique pour mobile
+    st.button("🔍 Accéder au Codex", on_click=aller_a_la_recherche, use_container_width=True, type="primary")
 
 
 # ==========================================
 # ECRAN 2 : BASE DE DONNÉES ET RECHERCHE
 # ==========================================
 elif st.session_state.page == "recherche":
-
-    # Bandeau supérieur compact
+    
+    # Bandeau supérieur compact pour maximiser l'espace écran
     col_nav, col_titre = st.columns([1, 5])
     with col_nav:
         st.button("🏠", on_click=aller_a_l_accueil, help="Retour à l'accueil")
     with col_titre:
-        st.markdown(
-            "<h3 style='margin:0; padding-top:2px;'>Codex Xesh</h3>",
-            unsafe_allow_html=True,
-        )
-
+        st.markdown("<h3 style='margin:0; padding-top:2px;'>Codex Xesh</h3>", unsafe_allow_html=True)
+        
     st.divider()
-
-    # Sélectionneur de mot-clé placé directement en haut de l'écran
-    search_term = st.selectbox(
-        "Sélectionnez ou tapez un mot-clé :",
-        [""] + sorted(list(MOTS_CLES.keys())),
-    )
-
+    
+    # Sélectionneur de mot-clé
+    search_term = st.selectbox("Sélectionnez ou tapez un mot-clé :", [""] + sorted(list(MOTS_CLES.keys())))
+    
     if search_term:
         st.header(f"🔍 {search_term}")
         description = MOTS_CLES[search_term]
@@ -533,10 +520,7 @@ elif st.session_state.page == "recherche":
 
 
 # --- PIED DE PAGE (BARRE LATÉRALE) ---
-st.sidebar.divider()
-st.sidebar.image(
-    "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp",
-    width=50,
-)
+st.sidebar.divider() 
+st.sidebar.image("https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp", width=50)
 st.sidebar.markdown(f"**Codex Xesh** - {len(MOTS_CLES)} entrées")
 st.sidebar.caption("Développé par Thoutoum")
