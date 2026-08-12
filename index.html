@@ -195,7 +195,7 @@
 <script>
     // 1. BASE DE DONNÉES DES MOTS-CLÉS
     const MOTS_CLES = {
-        "ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
+"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.",  
 
@@ -577,6 +577,9 @@
 
 "TRAITER X : CAPACITE Y": "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à PORTEE 1 et en LdV et placez un pion Blessure sur la carte dotée de CE mot-clé. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée de CE mot-clé possède sur elle un nombre de pions Blessure supérieur ou égal à Y. 63 Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.", 
     };
+
+    // On associe la clé anglaise au MÊME texte sans le réécrire :
+MOTS_CLES["COMPLETE THE MISSION = ACCOMPLIER LA MISSION "] = MOTS_CLES["ACCOMPLIR LA MISSION"];
 
     // 2. ICÔNES
     const BASE_URL = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/";
