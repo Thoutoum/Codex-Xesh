@@ -35,7 +35,6 @@
             width: 100%;
         }
 
-        /* En-tête */
         header {
             text-align: center;
             margin-bottom: 20px;
@@ -52,15 +51,15 @@
             margin-top: 5px;
         }
 
-        /* Conteneur principal de recherche : tout s'empile verticalement */
+        /* Conteneur de recherche relatif pour ancrer la liste dessous */
         .search-container {
+            position: relative;
             display: flex;
             flex-direction: column;
             width: 100%;
             margin-bottom: 20px;
         }
 
-        /* Ligne de saisie avec le champ à gauche et le bouton ❌ à droite */
         .search-box {
             display: flex;
             flex-direction: row;
@@ -68,7 +67,6 @@
             gap: 8px;
         }
 
-        /* Le champ de recherche occupe tout l'espace disponible */
         input[type="text"] {
             flex: 1;
             width: 100%;
@@ -80,7 +78,6 @@
             font-size: 1rem;
             outline: none;
             box-sizing: border-box;
-            transition: border-color 0.2s;
         }
 
         input[type="text"]:focus {
@@ -96,6 +93,38 @@
             cursor: pointer;
             font-size: 1rem;
             flex-shrink: 0;
+        }
+
+        /* LISTE DERROULANTE SUR-MESURE UNIVERSELLE */
+        .suggestions-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #21262d;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:active, .suggestion-item:hover {
+            background-color: #21262d;
+            color: var(--accent-color);
         }
 
         /* Carte de résultat */
@@ -121,7 +150,6 @@
             font-size: 1rem;
         }
 
-        /* Icônes inline */
         .icon-symbol {
             width: 20px;
             height: auto;
@@ -147,11 +175,11 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" list="keywordsList" placeholder="Tapez ou choisissez un mot-clé..." oninput="filtrerEtAfficher()" autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Tapez ou touchez pour chercher..." oninput="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
             <button class="btn-reset" onclick="reinitialiser()">❌</button>
         </div>
-        <!-- La datalist est projetée sous le champ de saisie -->
-        <datalist id="keywordsList"></datalist>
+        <!-- Liste dynamique personnalisée -->
+        <div id="suggestions" class="suggestions-list"></div>
     </div>
 
     <div id="resultCard" class="card">
@@ -166,7 +194,8 @@
 
 <script>
     // 1. BASE DE DONNÉES DES MOTS-CLÉS
-    const MOTS_CLES = {"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
+    const MOTS_CLES = {
+        "ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.",  
 
@@ -547,10 +576,9 @@
 "RESTAURATION": "Certaines capacités, comme les mots clés Traiter et Réparation, de même que certains effets de carte, permettent à un joueur de restaurer des figurines dans des unités alliées. Pour restaurer une figurine dans une unité, une ou plusieurs figurines de cette unité doivent avoir été vaincues ce round. Choisissez une figurine qui a été vaincue pendant le round en cours et placez cette figurine sur le champ de bataille en cohésion avec son Chef d'unité. Ensuite, donnez à cette figurine un nombre de pions Blessure égal au seuil de blessure indiqué sur sa carte Unité ou Amélioration moins un.", 
 
 "TRAITER X : CAPACITE Y": "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à PORTEE 1 et en LdV et placez un pion Blessure sur la carte dotée de CE mot-clé. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée de CE mot-clé possède sur elle un nombre de pions Blessure supérieur ou égal à Y. 63 Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.", 
-
     };
 
-    // 2. DICTIONNAIRE DES ICÔNES WEB
+    // 2. ICÔNES
     const BASE_URL = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/";
     const ICONES = {
         "[BLOCK]": "Block.webp",
@@ -583,18 +611,10 @@
         "[PROGRAMMATION]": "PROGRAMMATION.webp"
     };
 
-    const datalist = document.getElementById("keywordsList");
     const input = document.getElementById("searchInput");
+    const suggestionsBox = document.getElementById("suggestions");
     const card = document.getElementById("resultCard");
 
-    // Remplissage dynamique des suggestions dans la datalist
-    Object.keys(MOTS_CLES).sort().forEach(cle => {
-        let opt = document.createElement("option");
-        opt.value = cle;
-        datalist.appendChild(opt);
-    });
-
-    // Remplace les tags [TAG] par le code HTML <img>
     function formatterTexte(texte) {
         let t = texte;
         for (let [tag, fichier] of Object.entries(ICONES)) {
@@ -604,28 +624,54 @@
         return t;
     }
 
-    // Déclenché à chaque frappe dans le champ
-    function filtrerEtAfficher() {
+    // Génère la liste sous le champ
+    function filtrerSuggestions() {
         const saisie = input.value.trim().toUpperCase();
-        const cleTrouvee = Object.keys(MOTS_CLES).find(k => k.toUpperCase() === saisie);
+        suggestionsBox.innerHTML = "";
+        
+        const clesFiltrees = Object.keys(MOTS_CLES).sort().filter(cle => 
+            cle.toUpperCase().includes(saisie)
+        );
 
-        if (cleTrouvee) {
-            document.getElementById("ruleTitle").textContent = "🔍 " + cleTrouvee;
-            document.getElementById("ruleContent").innerHTML = formatterTexte(MOTS_CLES[cleTrouvee]);
-            card.style.display = "block";
+        if (clesFiltrees.length > 0) {
+            clesFiltrees.forEach(cle => {
+                const div = document.createElement("div");
+                div.className = "suggestion-item";
+                div.textContent = cle;
+                div.onclick = () => selectionnerMotCle(cle);
+                suggestionsBox.appendChild(div);
+            });
+            suggestionsBox.style.display = "block";
         } else {
-            card.style.display = "none";
+            suggestionsBox.style.display = "none";
         }
     }
 
-    // Réinitialise le champ et masque la carte
+    // Quand on touche un mot-clé dans la liste
+    function selectionnerMotCle(cle) {
+        input.value = cle;
+        suggestionsBox.style.display = "none";
+        
+        document.getElementById("ruleTitle").textContent = "🔍 " + cle;
+        document.getElementById("ruleContent").innerHTML = formatterTexte(MOTS_CLES[cle]);
+        card.style.display = "block";
+    }
+
     function reinitialiser() {
         input.value = "";
+        suggestionsBox.style.display = "none";
         card.style.display = "none";
         input.focus();
     }
 
-    // Enregistrement du Service Worker PWA
+    // Cacher la liste si on clique en dehors du champ
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".search-container")) {
+            suggestionsBox.style.display = "none";
+        }
+    });
+
+    // Service Worker (PWA)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
