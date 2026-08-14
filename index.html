@@ -95,7 +95,7 @@
             flex-shrink: 0;
         }
 
-        /* LISTE DERROULANTE SUR-MESURE UNIVERSELLE */
+        /* LISTE DÉROULANTE SUR-MESURE UNIVERSELLE */
         .suggestions-list {
             position: absolute;
             top: 100%;
@@ -104,7 +104,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            max-height: 200px;
+            max-height: 220px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
@@ -116,6 +116,7 @@
             padding: 12px 16px;
             cursor: pointer;
             border-bottom: 1px solid #21262d;
+            font-size: 0.95rem;
         }
 
         .suggestion-item:last-child {
@@ -143,6 +144,7 @@
             font-size: 1.3rem;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 10px;
+            line-height: 1.4;
         }
 
         .card-content {
@@ -175,7 +177,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Tapez ou touchez pour chercher..." oninput="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Tapez un mot-clé (FR ou EN)..." oninput="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
             <button class="btn-reset" onclick="reinitialiser()">❌</button>
         </div>
         <!-- Liste dynamique personnalisée -->
@@ -193,7 +195,7 @@
 </div>
 
 <script>
-    // 1. BASE DE DONNÉES DES MOTS-CLÉS
+    // 1. BASE DE DONNÉES DES MOTS-CLÉS FRANÇAIS
     const MOTS_CLES = {
 "ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
 
@@ -576,9 +578,18 @@
 "RESTAURATION": "Certaines capacités, comme les mots clés Traiter et Réparation, de même que certains effets de carte, permettent à un joueur de restaurer des figurines dans des unités alliées. Pour restaurer une figurine dans une unité, une ou plusieurs figurines de cette unité doivent avoir été vaincues ce round. Choisissez une figurine qui a été vaincue pendant le round en cours et placez cette figurine sur le champ de bataille en cohésion avec son Chef d'unité. Ensuite, donnez à cette figurine un nombre de pions Blessure égal au seuil de blessure indiqué sur sa carte Unité ou Amélioration moins un.", 
 
 "TRAITER X : CAPACITE Y": "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à PORTEE 1 et en LdV et placez un pion Blessure sur la carte dotée de CE mot-clé. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée de CE mot-clé possède sur elle un nombre de pions Blessure supérieur ou égal à Y. 63 Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.", 
+
     };
 
-    // 2. ICÔNES
+    // 2. EQUIVALENCES ANGLAIS -> FRANÇAIS
+    const TRADUCTIONS_EN = {
+        "FULFILL THE MISSION": "ACCOMPLIR LA MISSION",
+        "ARMOR 1": "ARMURE 1",
+        "JUMP 1": "SAUT 1"
+    
+    };
+
+    // 3. DICTIONNAIRE DES ICÔNES
     const BASE_URL = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/";
     const ICONES = {
         "[BLOCK]": "Block.webp",
@@ -624,21 +635,47 @@
         return t;
     }
 
-    // Génère la liste sous le champ
+    // Génère la liste de suggestions en cherchant dans les 2 langues
     function filtrerSuggestions() {
         const saisie = input.value.trim().toUpperCase();
         suggestionsBox.innerHTML = "";
         
-        const clesFiltrees = Object.keys(MOTS_CLES).sort().filter(cle => 
-            cle.toUpperCase().includes(saisie)
-        );
+        if (!saisie) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
 
-        if (clesFiltrees.length > 0) {
-            clesFiltrees.forEach(cle => {
+        let resultats = [];
+
+        // A. Recherche dans les mots-clés Français
+        Object.keys(MOTS_CLES).forEach(cleFR => {
+            if (cleFR.toUpperCase().includes(saisie)) {
+                resultats.push({ 
+                    libelleMenu: cleFR, 
+                    cleFR: cleFR, 
+                    termeEN: null 
+                });
+            }
+        });
+
+        // B. Recherche dans les équivalents Anglais
+        Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
+            if (nomEN.toUpperCase().includes(saisie)) {
+                resultats.push({ 
+                    libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
+                    cleFR: cleFR, 
+                    termeEN: nomEN 
+                });
+            }
+        });
+
+        // Affichage des résultats
+        if (resultats.length > 0) {
+            resultats.forEach(item => {
                 const div = document.createElement("div");
                 div.className = "suggestion-item";
-                div.textContent = cle;
-                div.onclick = () => selectionnerMotCle(cle);
+                div.textContent = item.libelleMenu;
+                div.onclick = () => selectionnerMotCle(item.cleFR, item.termeEN);
                 suggestionsBox.appendChild(div);
             });
             suggestionsBox.style.display = "block";
@@ -647,14 +684,22 @@
         }
     }
 
-    // Quand on touche un mot-clé dans la liste
-    function selectionnerMotCle(cle) {
-        input.value = cle;
+    // Affiche la règle avec rappel du nom anglais si recherché par terme VO
+    function selectionnerMotCle(cleFR, termeEN = null) {
+        input.value = termeEN ? `${termeEN} (${cleFR})` : cleFR;
         suggestionsBox.style.display = "none";
         
-        document.getElementById("ruleTitle").textContent = "🔍 " + cle;
-        document.getElementById("ruleContent").innerHTML = formatterTexte(MOTS_CLES[cle]);
-        card.style.display = "block";
+        if (MOTS_CLES[cleFR]) {
+            let titreHTML = "🔍 " + cleFR;
+            
+            if (termeEN) {
+                titreHTML += `<br><span style="font-size: 0.85rem; color: #a0a0a0; font-weight: normal;">Terme anglais (VO) : <b>${termeEN}</b></span>`;
+            }
+            
+            document.getElementById("ruleTitle").innerHTML = titreHTML;
+            document.getElementById("ruleContent").innerHTML = formatterTexte(MOTS_CLES[cleFR]);
+            card.style.display = "block";
+        }
     }
 
     function reinitialiser() {
@@ -664,7 +709,7 @@
         input.focus();
     }
 
-    // Cacher la liste si on clique en dehors du champ
+    // Ferme la liste si on clique à l'extérieur
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".search-container")) {
             suggestionsBox.style.display = "none";
