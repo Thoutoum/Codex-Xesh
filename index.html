@@ -109,7 +109,7 @@
             z-index: 1000;
             display: none;
             margin-top: 4px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 12px ra(0,0,0,0.5);
         }
 
         .suggestion-item {
@@ -135,7 +135,7 @@
             border-radius: 10px;
             padding: 20px;
             display: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 12px ra(0,0,0,0.3);
         }
 
         .card h2 {
@@ -662,7 +662,7 @@
         Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
             if (nomEN.toUpperCase().includes(saisie)) {
                 resultats.push({ 
-                    libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
+                    libelleMenu: `${nomEN} (${cleFR})`, 
                     cleFR: cleFR, 
                     termeEN: nomEN 
                 });
