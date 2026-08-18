@@ -1,10 +1,203 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codex Xesh - Star Wars Légion</title>
+
+    <!-- Configuration PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0e1117">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp">
+
+    <style>
+        :root {
+            --bg-color: #0e1117;
+            --card-bg: #161b22;
+            --text-color: #e6edf3;
+            --accent-color: #ff9800;
+            --border-color: #30363d;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header img {
+            max-width: 140px;
+            height: auto;
+        }
+
+        .version {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        /* Conteneur de recherche relatif pour ancrer la liste dessous */
+        .search-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            width: 100%;
+            padding: 12px 16px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--accent-color);
+        }
+
+        button.btn-reset {
+            padding: 12px 16px;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* LISTE DÉROULANTE SUR-MESURE UNIVERSELLE */
+        .suggestions-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            max-height: 220px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .suggestion-item {
+            padding: 12px 16px;
+            cursor: pointer;
+            border-bottom: 1px solid #21262d;
+            font-size: 0.95rem;
+        }
+
+        .suggestion-item:last-child {
+            border-bottom: none;
+        }
+
+        .suggestion-item:active, .suggestion-item:hover {
+            background-color: #21262d;
+            color: var(--accent-color);
+        }
+
+        /* Carte de résultat */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 20px;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .card-content {
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+
+        .icon-symbol {
+            width: 20px;
+            height: auto;
+            vertical-align: middle;
+            margin: 0 2px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6e7681;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <img src="https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp" alt="Xesh Logo">
+        <div class="version">Base de données version 29/05/2026</div>
+    </header>
+
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Tapez un mot-clé (FR ou EN)..." oninput="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
+            <button class="btn-reset" onclick="reinitialiser()">❌</button>
+        </div>
+        <!-- Liste dynamique personnalisée -->
+        <div id="suggestions" class="suggestions-list"></div>
+    </div>
+
+    <div id="resultCard" class="card">
+        <h2 id="ruleTitle"></h2>
+        <div id="ruleContent" class="card-content"></div>
+    </div>
+
+    <footer>
+        Codex Xesh • Développé par Thoutoum
+    </footer>
+</div>
+
 <script>
-    // -------------------------------------------------------------
-    // 1. TA BASE DE DONNÉES DE MOTS-CLÉS (GARDE TA LISTE COMPLÈTE ICI)
-    // -------------------------------------------------------------
+    // 1. BASE DE DONNÉES DES MOTS-CLÉS FRANÇAIS
     const MOTS_CLES = {
-        // Colle/garde toute ta liste FR habituelle ici
-"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
+       "ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.",  
 
@@ -385,16 +578,11 @@
 "RESTAURATION": "Certaines capacités, comme les mots clés Traiter et Réparation, de même que certains effets de carte, permettent à un joueur de restaurer des figurines dans des unités alliées. Pour restaurer une figurine dans une unité, une ou plusieurs figurines de cette unité doivent avoir été vaincues ce round. Choisissez une figurine qui a été vaincue pendant le round en cours et placez cette figurine sur le champ de bataille en cohésion avec son Chef d'unité. Ensuite, donnez à cette figurine un nombre de pions Blessure égal au seuil de blessure indiqué sur sa carte Unité ou Amélioration moins un.", 
 
 "TRAITER X : CAPACITE Y": "Lorsqu'une unité utilise l'action de carte Traiter X : Capacité Y, choisissez une unité de soldats non-droïdes alliée à PORTEE 1 et en LdV et placez un pion Blessure sur la carte dotée de CE mot-clé. Retirez au total jusqu'à X pions Blessure et/ou Poison de l'unité choisie ou restaurez jusqu'à X figurines dans cette unité. Cette capacité ne peut pas être utilisée si la carte dotée de CE mot-clé possède sur elle un nombre de pions Blessure supérieur ou égal à Y. 63 Les pions Blessure placés sur des cartes ne sont pas considérés comme possédés par des unités et ne comptent pas dans le seuil de blessure de cette unité. Ils ne peuvent pas non plus être retirés par des capacités qui retirent des pions Blessure à des unités. Si une unité dispose de plusieurs capacités Traiter X : Capacité Y, considérez chaque mot-clé comme une capacité à part. De plus, chaque action est considérée comme unique, et une unité qui a accès à plusieurs d'entre elles ne peut utiliser chaque capacité qu'une seule fois au cours de son activation. Cette règle s'applique même si l'unité a accès à deux capacités identiques de différentes sources.", 
-
-        // ... tous tes autres mots-clés
     };
 
-    // -------------------------------------------------------------
-    // 2. TES TRADUCTIONS EN -> FR (GARDE TA LISTE COMPLÈTE ICI)
-    // -------------------------------------------------------------
+    // 2. EQUIVALENCES ANGLAIS -> FRANÇAIS
     const TRADUCTIONS_EN = {
-        // Colle/garde toute ta liste EN -> FR ici
-       "ACCOMPLIR LA MISSION": "COMPLETE THE MISSION",  
+     "ACCOMPLIR LA MISSION": "COMPLETE THE MISSION",  
 
 "AGILE": "NIMBLE",  
 
@@ -776,12 +964,9 @@
 
 "TRAITER X : CAPACITE Y": "TREAT X / CAPICITY Y", 
 
-        // ... toutes tes autres traductions
     };
 
-    // -------------------------------------------------------------
     // 3. DICTIONNAIRE DES ICÔNES
-    // -------------------------------------------------------------
     const BASE_URL = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/";
     const ICONES = {
         "[BLOCK]": "Block.webp",
@@ -819,7 +1004,6 @@
     const card = document.getElementById("resultCard");
 
     function formatterTexte(texte) {
-        if (!texte) return "";
         let t = texte;
         for (let [tag, fichier] of Object.entries(ICONES)) {
             let imgHtml = `<img src="${BASE_URL}${fichier}" class="icon-symbol" alt="${tag}">`;
@@ -828,15 +1012,21 @@
         return t;
     }
 
-    // Fonction de filtrage corrigée (recherche FR + EN et support du tactile)
+    // Génère la liste de suggestions en cherchant dans les 2 langues
     function filtrerSuggestions() {
         const saisie = input.value.trim().toUpperCase();
         suggestionsBox.innerHTML = "";
+        
+        if (!saisie) {
+            suggestionsBox.style.display = "none";
+            return;
+        }
+
         let resultats = [];
 
-        // Recherche dans les clés Françaises
+        // A. Recherche dans les mots-clés Français
         Object.keys(MOTS_CLES).forEach(cleFR => {
-            if (!saisie || cleFR.toUpperCase().includes(saisie)) {
+            if (cleFR.toUpperCase().includes(saisie)) {
                 resultats.push({ 
                     libelleMenu: cleFR, 
                     cleFR: cleFR, 
@@ -845,9 +1035,9 @@
             }
         });
 
-        // Recherche dans les équivalents Anglais
+        // B. Recherche dans les équivalents Anglais
         Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
-            if (!saisie || nomEN.toUpperCase().includes(saisie)) {
+            if (nomEN.toUpperCase().includes(saisie)) {
                 resultats.push({ 
                     libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
                     cleFR: cleFR, 
@@ -856,22 +1046,13 @@
             }
         });
 
+        // Affichage des résultats
         if (resultats.length > 0) {
-            // Limite à 30 résultats affichés pour conserver une fluidité parfaite sur mobile
-            resultats.slice(0, 30).forEach(item => {
+            resultats.forEach(item => {
                 const div = document.createElement("div");
                 div.className = "suggestion-item";
                 div.textContent = item.libelleMenu;
-                
-                // Déclenchement instantané au toucher/clic (évite que le menu ne se ferme avant validation)
-                const valider = (e) => {
-                    e.preventDefault();
-                    selectionnerMotCle(item.cleFR, item.termeEN);
-                };
-
-                div.addEventListener("mousedown", valider);
-                div.addEventListener("touchstart", valider);
-
+                div.onclick = () => selectionnerMotCle(item.cleFR, item.termeEN);
                 suggestionsBox.appendChild(div);
             });
             suggestionsBox.style.display = "block";
@@ -880,12 +1061,14 @@
         }
     }
 
+    // Affiche la règle avec rappel du nom anglais si recherché par terme VO
     function selectionnerMotCle(cleFR, termeEN = null) {
         input.value = termeEN ? `${termeEN} (${cleFR})` : cleFR;
         suggestionsBox.style.display = "none";
         
         if (MOTS_CLES[cleFR]) {
             let titreHTML = "🔍 " + cleFR;
+            
             if (termeEN) {
                 titreHTML += `<br><span style="font-size: 0.85rem; color: #a0a0a0; font-weight: normal;">Terme anglais (VO) : <b>${termeEN}</b></span>`;
             }
@@ -903,23 +1086,22 @@
         input.focus();
     }
 
-    // Écouteurs d'événements
-    input.addEventListener("input", filtrerSuggestions);
-    input.addEventListener("focus", filtrerSuggestions);
-
-    // Fermeture du menu si clic en dehors
+    // Ferme la liste si on clique à l'extérieur
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".search-container")) {
             suggestionsBox.style.display = "none";
         }
     });
 
-    // Registration du Service Worker
+    // Service Worker (PWA)
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
-                .then(() => console.log('Codex Xesh actif hors-ligne !'))
+                .then(() => console.log('Codex Xesh disponible hors-ligne !'))
                 .catch((err) => console.error('Erreur Service Worker:', err));
         });
     }
 </script>
+
+</body>
+</html>
