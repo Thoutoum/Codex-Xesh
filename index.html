@@ -51,7 +51,7 @@
             margin-top: 5px;
         }
 
-        /* Conteneur de recherche relatif pour ancrer la liste dessous */
+        /* Conteneur de recherche relatif */
         .search-container {
             position: relative;
             display: flex;
@@ -95,7 +95,7 @@
             flex-shrink: 0;
         }
 
-        /* LISTE DÉROULANTE SUR-MESURE UNIVERSELLE */
+        /* LISTE DÉROULANTE */
         .suggestions-list {
             position: absolute;
             top: 100%;
@@ -104,7 +104,7 @@
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            max-height: 220px;
+            max-height: 250px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
@@ -177,7 +177,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Tapez un mot-clé (FR ou EN)..." oninput="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Rechercher ou sélectionner un mot-clé..." oninput="filtrerSuggestions()" onclick="filtrerSuggestions()" onfocus="filtrerSuggestions()" autocomplete="off">
             <button class="btn-reset" onclick="reinitialiser()">❌</button>
         </div>
         <!-- Liste dynamique personnalisée -->
@@ -197,7 +197,7 @@
 <script>
     // 1. BASE DE DONNÉES DES MOTS-CLÉS FRANÇAIS
     const MOTS_CLES = {
-"ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
+        "ACCOMPLIR LA MISSION": "Pendant la mise en place, pour chaque unité dotée de CE mot-clé, placez un pion Mission prioritaire (pion Avantage) allié sur le champ de bataille, en territoire contesté. Tant qu'une unité dotée de CE mot-clé se trouve à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, cette unité gagne [D_SURGE] : [BLOCK]. Lorsqu'une unité dotée de CE mot-clé attaque une unité ennemie à PORTÉE 1 d'un ou plusieurs pions Mission prioritaire alliés, la réserve d'attaque de l'unité attaquante gagne le mot-clé CRITIQUE 2.",  
 
 "AGILE": "Après qu'une unité dotée de CE mot-clé a défendu contre une attaque, si elle a dépensé au moins un pion Esquive à n'importe quel moment de la séquence d'attaque, elle gagne un pion Esquive.",  
 
@@ -583,7 +583,7 @@
 
     // 2. EQUIVALENCES ANGLAIS -> FRANÇAIS
     const TRADUCTIONS_EN = {
-"ACCOMPLIR LA MISSION": "COMPLETE THE MISSION",  
+       "ACCOMPLIR LA MISSION": "COMPLETE THE MISSION",  
 
 "AGILE": "NIMBLE",  
 
@@ -1013,47 +1013,57 @@
         return t;
     }
 
-    // Génère la liste de suggestions en cherchant dans les 2 langues
+    // Génère la liste de suggestions
     function filtrerSuggestions() {
         const saisie = input.value.trim().toUpperCase();
         suggestionsBox.innerHTML = "";
         
-        if (!saisie) {
-            suggestionsBox.style.display = "none";
-            return;
-        }
-
         let resultats = [];
 
-        // A. Recherche dans les mots-clés Français
-        Object.keys(MOTS_CLES).forEach(cleFR => {
-            if (cleFR.toUpperCase().includes(saisie)) {
+        // Si le champ est vide, afficher tous les mots-clés FR
+        if (!saisie) {
+            Object.keys(MOTS_CLES).sort().forEach(cleFR => {
                 resultats.push({ 
                     libelleMenu: cleFR, 
                     cleFR: cleFR, 
                     termeEN: null 
                 });
-            }
-        });
+            });
+        } else {
+            // A. Recherche dans les mots-clés Français
+            Object.keys(MOTS_CLES).forEach(cleFR => {
+                if (cleFR.toUpperCase().includes(saisie)) {
+                    resultats.push({ 
+                        libelleMenu: cleFR, 
+                        cleFR: cleFR, 
+                        termeEN: null 
+                    });
+                }
+            });
 
-        // B. Recherche dans les équivalents Anglais
-        Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
-            if (nomEN.toUpperCase().includes(saisie)) {
-                resultats.push({ 
-                    libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
-                    cleFR: cleFR, 
-                    termeEN: nomEN 
-                });
-            }
-        });
+            // B. Recherche dans les équivalents Anglais
+            Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
+                if (nomEN.toUpperCase().includes(saisie)) {
+                    resultats.push({ 
+                        libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
+                        cleFR: cleFR, 
+                        termeEN: nomEN 
+                    });
+                }
+            });
+        }
 
-        // Affichage des résultats
+        // Affichage du menu déroulant
         if (resultats.length > 0) {
             resultats.forEach(item => {
                 const div = document.createElement("div");
                 div.className = "suggestion-item";
                 div.textContent = item.libelleMenu;
-                div.onclick = () => selectionnerMotCle(item.cleFR, item.termeEN);
+                // mousedown pour éviter les conflits tactiles sur mobile
+                div.onmousedown = (e) => {
+                    e.preventDefault();
+                    selectionnerMotCle(item.cleFR, item.termeEN);
+                };
                 suggestionsBox.appendChild(div);
             });
             suggestionsBox.style.display = "block";
@@ -1062,7 +1072,7 @@
         }
     }
 
-    // Affiche la règle avec rappel du nom anglais si recherché par terme VO
+    // Affiche la règle sélectionnée
     function selectionnerMotCle(cleFR, termeEN = null) {
         input.value = termeEN ? `${termeEN} (${cleFR})` : cleFR;
         suggestionsBox.style.display = "none";
@@ -1087,7 +1097,7 @@
         input.focus();
     }
 
-    // Ferme la liste si on clique à l'extérieur
+    // Ferme la liste si on clique ailleurs sur la page
     document.addEventListener("click", (e) => {
         if (!e.target.closest(".search-container")) {
             suggestionsBox.style.display = "none";
