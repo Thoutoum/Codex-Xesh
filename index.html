@@ -109,7 +109,7 @@
             z-index: 1000;
             display: none;
             margin-top: 4px;
-            box-shadow: 0 4px 12px ra(0,0,0,0.5);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
 
         .suggestion-item {
@@ -135,7 +135,7 @@
             border-radius: 10px;
             padding: 20px;
             display: none;
-            box-shadow: 0 4px 12px ra(0,0,0,0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         .card h2 {
@@ -225,7 +225,7 @@
 
 "ATTAQUE IMPETUEUSE": "Au début de son activation, une unité dotée de CE mot-clé peut augmenter ou diminuer sa vitesse maximale de 1 jusqu'à la fin de cette activation.", 
 
-"AUTODESTRUCTION X": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. <br>Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant entièrement chaque jet avant de passer à l'unité suivante. <br>L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. <br>Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.",
+"AUTODESTRUCTION X (UNITE)": "Une unité ne peut effectuer une action de carte Autodestruction X que si elle a un nombre de pions Blessure supérieur ou égal à la moitié de son seuil de blessure, arrondi au supérieur. <br>Pour chaque unité à PORTEE 1 et en LdV, lancez X dés d'attaque noirs, en résolvant entièrement chaque jet avant de passer à l'unité suivante. <br>L'unité visée subit 1 blessure pour chaque résultat [A_SURGE] et [CRIT] obtenu, puis elle gagne 1 pion Suppression pour chaque résultat [HIT] obtenu. <br>Une fois que tous les jets sont résolus, l'unité ayant utilisé l'action de carte est vaincue.",
 
 "AUTONOME : PION X/ACTION": "Au début de la Phase d'Activation, si une unité dotée de CE mot-clé ne possède pas de pion Ordre, cette unité peut gagner X pions spécifiés ou effectuer l'action spécifiée en tant qu'action gratuite.", 
 
@@ -359,7 +359,7 @@
 
 "MAITRE CONTEUR": "Lorsqu'une unité effectue l'action de carte Maître Conteur, elle choisit jusqu'à X unités [EWOKS] alliées à PORTÉE 2, X étant égal au numéro du round en cours. Chaque unité choisie gagne 2 pions Adrénaline.", 
 
-"MAITRE DE LA FORCE X": "À la fin de son activation, une unité dotée de CE mot-clé peut redresser jusqu'à X de ses cartes [FORCE] inclinées.", 
+"MAITRE DE LA FORCE": "À la fin de son activation, une unité dotée de CE mot-clé peut redresser jusqu'à X de ses cartes [FORCE] inclinées.", 
 
 "MAITRISE DE L'ATARU": "Une unité dotée de CE mot-clé peut effectuer jusqu'à deux actions Attaquer au cours de son activation. Lorsqu'elle attaque, elle gagne un pion Esquiver une fois que l'attaque est résolue. Lorsqu'elle défend, elle gagne un pion Viser une fois l'attaque résolue.", 
 
@@ -423,9 +423,7 @@
 
 "PRECIS X": "Lorsqu'une unité attaquante dotée de CE mot-clé dépense un pion Viser pendant l'étape « Relancer les dés d'attaque », elle peut relancer jusqu'à X dés d'attaque supplémentaires par pion Viser dépensé.", 
 
-"PRESTE X": "CE mot-clé permet à une unité de gagner X pions Esquive à chaque fois qu'elle effectue un déplacement normal au cours d'une action ou d'une action gratuite.", 
-        
-"PRIME": "Pendant la mise en place, une unité dotée de CE mot-clé choisit une unité [AGENT] ou [COMMANDANT] ennemie : cette dernière gagne un pion Butin. Après qu'une unité alliée dotée de CE mot-clé a vaincu, grâce à un effet ou une attaque, une unité ennemie dotée d'un ou plusieurs pions Prime, le contrôleur de l'unité alliée marque 1 PV.", 
+"PRESTE X": "CE mot-clé permet à une unité de gagner X pions Esquive à chaque fois qu'elle effectue un déplacement normal au cours d'une action ou d'une action gratuite.", "PRIME": "Pendant la mise en place, une unité dotée de CE mot-clé choisit une unité [AGENT] ou [COMMANDANT] ennemie : cette dernière gagne un pion Butin. Après qu'une unité alliée dotée de CE mot-clé a vaincu, grâce à un effet ou une attaque, une unité ennemie dotée d'un ou plusieurs pions Prime, le contrôleur de l'unité alliée marque 1 PV.", 
 
 "PROFIL BAS": "Tant qu'elle défend contre une attaque à distance, si une unité dotée de CE mot-clé doit lancer un ou plusieurs dés de défense pendant l'étape « Lancer la réserve de couvert », elle lance un dé de défense de moins et ajoute à la place un résultat [BLOCK] supplémentaire à la réserve de couvert après le jet.", 
 
@@ -585,10 +583,388 @@
 
     // 2. EQUIVALENCES ANGLAIS -> FRANÇAIS
     const TRADUCTIONS_EN = {
-        "FULFILL THE MISSION": "ACCOMPLIR LA MISSION",
-        "ARMOR 1": "ARMURE 1",
-        "JUMP 1": "SAUT 1"
+"ACCOMPLIR LA MISSION": "COMPLETE THE MISSION",  
+
+"AGILE": "NIMBLE",  
+
+"AGUERRI": "STEADY", 
+
+"AIDE : AFFILIATION/TYPE D'UNITE": "AID : AFFILIATION/UNIT TYPE",  
+
+"ALLIES DE CIRCONSTANCE": "ALLIES OF CONVENIENCE",  
+
+"ALOURDISSEMENT": "WEIGHED DOWN", 
+
+"ALTER EGO": "COUNTERPART", 
+
+"ARMURE": "ARMOR", 
+
+"ARMURE X": "ARMOR X", 
+
+"ARSENAL X": "ARSENAL X", 
+
+"ASCENSION": "SCALE", 
+
+"ASSISTANCE X": "BOLSTER X", 
+
+"ASSOCIE : NOM D'UNITE": "ASSOCIATE : UNIT NAME", 
+
+"ATTAQUE IMPETUEUSE": "ATTACK RUN", 
+
+"AUTODESTRUCTION X": "SELF-DESTRUCT X",
+
+"AUTONOME : PION X/ACTION": "INDEPENDANT : TOKEN X/ACTION", 
+
+"BARRAGE": "BARRAGE", 
+
+"BLESSURE X": "WOUND X", 
+
+"BLOCAGE": "BLOCK", 
+
+"BOUCLIER X": "SHIELDED X", 
+
+"CACHE": "CACHE", 
+
+"CALCUL DE PROBABILITES": "CALCUL ODDS", 
+
+"CHARGE": "CHARGE", 
+
+"CHASSEUR DE JEDI": "JEDI HUNTER",  
+
+"CIBLAGE AVANCE : TYPE D'UNITE X": "ADVANCED TARGETING : UNIT TYPE X", 
+
+"CIBLE X": "TARGET X", 
+
+"COMMANDANT DES OPÉRATIONS": "FIELD COMMANDER", 
+
+"CONSEILS : TYPE D'UNITE": "GUIDANCE"
+
+"CONTRAINTE : RANG/TYPE D'UNITE": "COMPEL : RANK/UNIT TYPE", 
+
+"COORDINATION : NOM/TYPE D'UNITE": "COORDINATE : UNITE NAME/UNIT TYPE", 
+
+"COUP DE CHANCE X": "UNCANNY LUCK X", 
+
+"COUVERT X": "COVER X", 
+
+"DEFENSE X": "DEFEND X", 
+
+"DEFLEXION": "DEFLECT", 
+
+"DEMORALISER X": "DEMORALIZE X", 
+
+"DETACHEMENT : NOM/TYPE D'UNITE": "DETACHMENT : UNIT NAME/TYPE", 
+
+"DISCIPLINE X": "DISCIPLINED X", 
+
+"DISCRET": "INCONSPICUOUS", 
+
+"DISTRAIRE": "DISTRACT", 
+
+"DUELLISTE": "DUELIST", 
+
+"ECLAIREUR X": "SCOUT X", 
+
+"ENRAGE X": "ENRAGE X", 
+
+"ENTOURAGE : NOM D'UNITÉ": "ENTOURAGE : UNIT NAME", 
+
+"EQUIPE": "EQUIP", 
+
+"EQUIPE AVEC ARME LOURDE": "HEAVY WEAPON TEAM", 
+
+"EQUIPE D'ECLAIREURS X": "SCOUTING PARTY X",  
+
+"ESCORTE : NOM/TYPE D'UNITE": "RETINUE : UNIT/UNIT TYPE", 
+
+"EXEMPLAIRE": "EXEMPLAR", 
+
+"FIABLE X": "RELIABLE X", 
+
+"FUMEE X": "SMOKE X", 
+
+"GARDIEN X": "GUARDIAN X", 
+
+"GENERATEUR X": "GENERATOR X", 
+
+"GRIMPEUR EXPERIMENTE": "EXPERT CLIMBER", 
+
+"IA : ACTION": "AI : ACTION", 
+
+"IMMUNITE : ARMES PORTEE 1": "IMMUNE : RANGE 1 WEAPONS", 
+
+"IMMUNITE : CORPS-A-CORPS": "IMMUNE : MELEE", 
+
+"IMMUNITE : DEFLAGRATION": "IMMUNE : BLAST", 
+
+"IMMUNITE : EFFETS ENNEMIS": "IMMUNE : ENEMY EFFECTS", 
+
+"IMMUNITE : PERFORANT": "IMMUNE : PIERCE", 
+
+"IMMUNITE : PERFORANT AU CORPS-A-CORPS": "IMMUNE : MELEE PIERCE", 
+
+"IMPITOYABLE": "RUTHLESS", 
+
+"IMPLACABLE": "RELENTLESS", 
+
+"INARRETABLE": "UNSTOPPABLE", 
+
+"INCOGNITO": "INCOGNITO", 
+
+"INDIFFERENT": "UNCONCERNED", 
+
+"INDOMPTABLE": "INDOMITABLE", 
+
+"INFILTRATION": "INFILTRATE", 
+
+"INFANTERIE MÉCANISÉE": "MECHANIZED INFANTRY",
     
+"INFLUENCE DIVINE": "DIVINE INFLUENCE", 
+
+"INSENSIBLE": "IMPERVIOUS", 
+
+"INSPIRATION X": "INSPIRE X", 
+
+"INSTINCT DE SURVIE": "SELF-PRESERVATION", 
+
+"INTERROGATOIRE": "INTERROGATE", 
+
+"INTREPIDE": "DAUNTLESS", 
+
+"INTUITION DU DANGER X": "DANGER SENSE X", 
+
+"JE FAIS AUSSI PARTIE DE L'EQUIPE": "I'M PART OF THE SQUAD TOO",
+
+"JE SENS LE PROFIT": "MY MOOD IS BASED ON PROFIT",
+
+"LA MORT VENUE DU CIEL": "DEATH FROM ABOVE", 
+
+"LA VICTOIRE OU LA MORT": "VICTORY OR DEATH",    
+
+"LES MANDALORIENS SONT PLUS FORTS ENSEMBLE": "MANDALORIANS ARE STRONGER TOGETHER",
+    
+"LONGUEUR D'AVANCE": "ONE STEP AHEAD", 
+
+"MAITRE CONTEUR": "MASTER STORYTELLER", 
+
+"MAITRE DE LA FORCE X": "MASTER OF THE FORCE X", 
+
+"MAITRISE DE L'ATARU": "ATARU MASTERY", 
+
+"MAITRISE DU DJEM SO": "DJEM SO MASTERY",  
+
+"MAITRISE DU JAR'KAI": "JAR'KRAY MASTERY", 
+
+"MAITRISE DU JUYO": "JUYO MASTERY", 
+
+"MAITRISE DU MAKASHI": "MAKASHI MASTERY", 
+
+"MAITRISE DU SHIEN": "SHIEN MASTERY", 
+
+"MAITRISE DU SORESU": "SORESU MASTERY", 
+
+"MAÎTRISE DU VAAPAD": "VAAPAD MASTERY",
+    
+"MALIN": "CUNNING", 
+
+"MANŒUVRE IMPROBABLE": "OUTMANEUVER", 
+
+"MARCHE FORCEE": "SPUR", 
+
+"MATAMORE": "SWASHBUCKLER",
+    
+"MERCENAIRE : FACTION": "MERCENERY : FACTION", 
+
+"METTRE A COUVERT X": "TAKE COVER X", 
+
+"MISSION SECRETE": "SECRET MISSION", 
+
+"MOBILE": "MOBILE",
+
+"MOBILITE DIFFICILE": "PLODDING", 
+
+"MODE ROUE": "WHEEL MODE", 
+
+"NOUS NOUS BATTONS POUR NOTRE FAMILLE": "WE FIGHT FOR OUR FAMILY",
+    
+"OBSERVATEUR X": "SPOTTER X", 
+
+"ON EST PAS DES REGS": "WE'RE NOT REGS", 
+
+"OPERATIONNEL X": "READY X", 
+
+"ORDRE DIRECT : NOM/TYPE D'UNITE": "DIRECT : UNIT NAME/UNIT TYPE", 
+
+"PILOTAGE DE VÉHICULE X": "COMMAND VEHICLE X",
+    
+"PISTOLERO": "GUNSLINGER", 
+
+"PIVOT COMPLET": "FULL PIVOT", 
+
+"POINT FAIBLE X : AVANT/ARRIERE/FLANCS": "WEAK POINT X : FRONT/REAR/SIDES", 
+
+"POSITION PREPAREE": "PREPARED POSITION", 
+
+"POUVOIR LATENT": "LATENT POWER", 
+
+"PRECIS X": "PRECISE X",
+
+"PRESTE X": "AGILE X", 
+
+"PRIME": "BOUNTY", 
+
+"PROFIL BAS": "LOW PROFILE", 
+
+"PROGRAMME": "PROGRAMMED", 
+
+"RECHARGER X": "RECHARGE X", 
+
+"REDEPLOIEMENT": "REPOSITION", 
+
+"REGENERER X": "REGENERATE X",  
+
+"RENFORTS": "REINFORCEMENTS", 
+
+"RETRAIT": "DISENGAGE", 
+
+"RIPOSTE GRADUEE X": "FLEXIBLE RESPONSE X", 
+
+"SANS ENTRAVE": "UNHINDERED", 
+
+"SAUT X": "JUMP X", 
+
+"SENTINELLE": "SENTINEL", 
+
+"SPECIFICITE : FORCE ARMEE": "SPECIAL ISSUE : BATTLE FORCE", 
+
+"SPEEDER X": "SPEEDER X", 
+
+"STATIONNAIRE": "STATIONARY", 
+
+"STRATEGE X": "STRATEGIZE X", 
+
+"SURCHARGE": "OVERRIDE", 
+
+"SURVEILLANCE X": "OBSERVE X", 
+
+"SUSTENTATION : TERRESTRE/ AERIENNE X": "HOVER : GROUND/AIR X", 
+
+"DERAPER": "STRAFE MOVE", 
+
+"TACTICIEN X": "TACTICAL X", 
+
+"TELLE EST LA VOIE": "THIS IS THE WAY",
+    
+"TENIR BON": "HOLD THE LINE",
+
+"TENIR LE CAP : MOT-CLE": "EYES ON THE PRIZE : KEYWORD",
+    
+"TENTATION": "TEMPTED", 
+
+"TIRER LES FICELLES": "PULLING THE STRINGS", 
+
+"TIREUR D'ELITE X": "SHARPSHOOTER X", 
+
+"TIREUR EMBUSQUE": "MARKSMAN", 
+
+"TIRS DE SOUTIEN": "FIRE SUPPORT", 
+
+"TRANSPORT": "TRANSPORT", 
+
+"TRAQUE": "HUNTED",  
+
+"TRAVAIL D'EQUIPE : NOM D'UNITE": "TEAMWORK : UNIT NAME", 
+
+"VEHICULE GRIMPANT": "CLIMBING VEHICLE", 
+
+"VIVACITE D'ESPRIT": "QUICK THINKING", 
+
+"ANTI-MATERIEL X": "ANTI-MATERIEL X", 
+
+"ANTI-PERSONNEL X": "ANTI-PERSONNEL X", 
+
+"ARME A EFFET DE ZONE": "AREA WEAPON", 
+
+"ARMER X : TYPE DE CHARGE": "ARM X : CHARGE TOKEN TYPE", 
+
+"ASSAUT X": "ASSAULT X",
+    
+"BELIER X": "RAM X", 
+
+"BORDEE X": "OVERRUN X", 
+
+"CABLE DE REMORQUAGE": "TOW CABLE", 
+
+"CRITIQUE X": "CRITICAL X", 
+
+"DEBORDEMENT": "OVERWHELM",
+    
+"DEFLAGRATION": "BLAST", 
+
+"DISPERSION": "SCATTER", 
+
+"ENCOMBRANT": "CUMBERSOME", 
+
+"EQUIPE SNIPER": "SNIPER TEAM",
+    
+"EXPLOSION X : TYPE DE CHARGE": "DETONATE X : CHARGE TYPE", 
+
+"FIXE : AVANT/ARRIERE/FLANCS": "FIXED : FRONT/REAR/SIDES", 
+
+"HAUTE VELOCITE": "HIGH VELOCITY",  
+
+"IMMOBILISER X": "IMMOBILIZE X", 
+
+"IMMUNITE : DEFLEXION": "IMMUNE : DEFLECT", 
+
+"IMPACT X": "IMPACT X", 
+
+"ION X": "ION X", 
+
+"LETAL X": "LETHAL X", 
+
+"LONGUE DISTANCE": "LONG SHOT", 
+
+"PERFORANT X": "PIERCE X", 
+
+"POISON X": "POISON X", 
+
+"POLYVALENT": "VERSATILE", 
+
+"PRIMITIF": "PRIMITIVE", 
+
+"RAYONS X": "BEAM X", 
+
+"SOUFFLE": "SPRAY", 
+
+"SUPPRESSIF": "SUPPRESSIVE", 
+
+"ARME DE POING : CORPS-A-CORPS/A DISTANCE": "SIDEARM MELEE/RANGE", 
+
+"CHEF": "LEADER", 
+
+"CYCLE": "CYCLE", 
+
+"DIVULGATION": "DIVULGE", 
+
+"NON-COMBATTANT": "NONCOMBATTANT", 
+
+"PERMANENT": "PERMANENT", 
+
+"PETIT": "SMALL", 
+
+"PIONS BANE": "BANE TOKENS", 
+
+"PIONS GRAFFITI": "GRAFFITI TOKENS", 
+
+"RECONFIGURATION": "RECONFIGURE", 
+
+"REPARATION X : CAPACITE Y": "REPAIR X / CAPICITY Y", 
+
+"RESTAURATION": "RESTORE", 
+
+"TRAITER X : CAPACITE Y": "TREAT X / CAPICITY Y", 
+
     };
 
     // 3. DICTIONNAIRE DES ICÔNES
@@ -664,7 +1040,7 @@
         Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
             if (nomEN.toUpperCase().includes(saisie)) {
                 resultats.push({ 
-                    libelleMenu: `${nomEN} (${cleFR})`, 
+                    libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, 
                     cleFR: cleFR, 
                     termeEN: nomEN 
                 });
@@ -695,7 +1071,7 @@
             let titreHTML = "🔍 " + cleFR;
             
             if (termeEN) {
-                titreHTML += `<br><span style="font-size: 0.85rem; color: #a0a0a0; font-weight: normal;">(VO) : <b>${termeEN}</b></span>`;
+                titreHTML += `<br><span style="font-size: 0.85rem; color: #a0a0a0; font-weight: normal;">Terme anglais (VO) : <b>${termeEN}</b></span>`;
             }
             
             document.getElementById("ruleTitle").innerHTML = titreHTML;
