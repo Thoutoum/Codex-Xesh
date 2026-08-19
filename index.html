@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Codex Xesh - Star Wars Légion</title>
 
-    <!-- Configuration PWA -->
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#0e1117">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/Xesh.webp">
@@ -122,7 +121,7 @@
             border-bottom: none;
         }
 
-        .suggestion-item:active, .suggestion-item:hover {
+        .suggestion-item:hover, .suggestion-item:active {
             background-color: #21262d;
             color: var(--accent-color);
         }
@@ -175,7 +174,7 @@
 
     <div class="search-container">
         <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Rechercher un mot-clé (FR ou EN)..." autocomplete="off">
+            <input type="text" id="searchInput" placeholder="Rechercher un mot-clé..." autocomplete="off">
             <button class="btn-reset" onclick="reinitialiser()">❌</button>
         </div>
         <div id="suggestions" class="suggestions-list"></div>
@@ -191,10 +190,9 @@
     </footer>
 </div>
 
-<!-- IMPORTATION DE LA BASE DE DONNÉES -->
-<script src="data.js"></script>
+<!-- CHARGEMENT DE LA BASE DE DONNÉES -->
+<script src="./data.js"></script>
 
-<!-- SCRIPT DE FONCTIONNEMENT LOGIQUE -->
 <script>
     const BASE_URL = "https://raw.githubusercontent.com/Thoutoum/Codex-Xesh/main/";
     const ICONES = {
@@ -247,36 +245,27 @@
         suggestionsBox.innerHTML = "";
         let resultats = [];
 
-        // Recherche dans les clés Françaises
-        if (typeof MOTS_CLES !== 'undefined') {
-            Object.keys(MOTS_CLES).forEach(cleFR => {
-                if (!saisie || cleFR.toUpperCase().includes(saisie)) {
-                    resultats.push({ libelleMenu: cleFR, cleFR: cleFR, termeEN: null });
-                }
-            });
-        }
+        const motsCles = window.MOTS_CLES || {};
 
-        // Recherche dans les équivalents Anglais
-        if (typeof TRADUCTIONS_EN !== 'undefined') {
-            Object.entries(TRADUCTIONS_EN).forEach(([nomEN, cleFR]) => {
-                if (!saisie || nomEN.toUpperCase().includes(saisie)) {
-                    resultats.push({ libelleMenu: `${nomEN} 🇬🇧 (→ ${cleFR})`, cleFR: cleFR, termeEN: nomEN });
-                }
-            });
-        }
+        // Parcours simple de la liste unique
+        Object.keys(motsCles).forEach(cle => {
+            if (!saisie || cle.toUpperCase().includes(saisie)) {
+                resultats.push(cle);
+            }
+        });
 
         if (resultats.length > 0) {
-            resultats.slice(0, 30).forEach(item => {
+            resultats.slice(0, 30).forEach(cle => {
                 const div = document.createElement("div");
                 div.className = "suggestion-item";
-                div.textContent = item.libelleMenu;
+                div.textContent = cle;
                 
                 const valider = (e) => {
                     e.preventDefault();
-                    selectionnerMotCle(item.cleFR, item.termeEN);
+                    selectionnerMotCle(cle);
                 };
 
-                div.addEventListener("mousedown", valider);
+                div.addEventListener("click", valider);
                 div.addEventListener("touchstart", valider);
 
                 suggestionsBox.appendChild(div);
@@ -287,18 +276,14 @@
         }
     }
 
-    function selectionnerMotCle(cleFR, termeEN = null) {
-        input.value = termeEN ? `${termeEN} (${cleFR})` : cleFR;
+    function selectionnerMotCle(cle) {
+        input.value = cle;
         suggestionsBox.style.display = "none";
         
-        if (typeof MOTS_CLES !== 'undefined' && MOTS_CLES[cleFR]) {
-            let titreHTML = "🔍 " + cleFR;
-            if (termeEN) {
-                titreHTML += `<br><span style="font-size: 0.85rem; color: #a0a0a0; font-weight: normal;">Terme anglais (VO) : <b>${termeEN}</b></span>`;
-            }
-            
-            document.getElementById("ruleTitle").innerHTML = titreHTML;
-            document.getElementById("ruleContent").innerHTML = formatterTexte(MOTS_CLES[cleFR]);
+        const motsCles = window.MOTS_CLES || {};
+        if (motsCles[cle]) {
+            document.getElementById("ruleTitle").innerHTML = "🔍 " + cle;
+            document.getElementById("ruleContent").innerHTML = formatterTexte(motsCles[cle]);
             card.style.display = "block";
         }
     }
@@ -322,7 +307,7 @@
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('./sw.js')
-                .then(() => console.log('Codex Xesh actif hors-ligne !'))
+                .then(() => console.log('Service Worker actif !'))
                 .catch((err) => console.error('Erreur Service Worker:', err));
         });
     }
