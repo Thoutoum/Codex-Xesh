@@ -1,4 +1,4 @@
-const CACHE_NAME = 'codex-xesh-v2';
+const CACHE_NAME = 'codex-xesh-v3'; // Passe en v3
 const FILES_TO_CACHE = [
   './',
   './index.html',
