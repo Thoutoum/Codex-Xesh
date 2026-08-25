@@ -261,7 +261,7 @@ window.MOTS_CLES = {
 
 "STRATEGIZE X - STRATEGE X": "Lorsqu'une unité utilise l'action Stratège X, elle gagne un [SUPPRESSION], puis elle choisit X unités alliées à [RANGE 2]. Chaque unité choisie gagne un [AIM] et un [DODGE].", 
 
-"OVERRIDE - SURCHARGE": "Lorsqu’une unité alliée ayant le mot-clé IA débute son activation à [RANGE 3] d’au moins 1 unité alliée dotée de CE mot-clé, choisissez 1 de ces unités ayant Surcharge qui n’est pas paniquée.<br>L’unité choisie peut gagner 1 [SUPPRESSION]. <b>Dans ce cas, l’unité qui s’active ignore le mot-clé IA pendant son activation.", 
+"OVERRIDE - SURCHARGE": "Lorsqu’une unité alliée ayant le mot-clé IA débute son activation à [RANGE 3] d’au moins 1 unité alliée dotée de CE mot-clé, choisissez 1 de ces unités ayant Surcharge qui n’est pas paniquée.<br>L’unité choisie peut gagner 1 [SUPPRESSION]. <br>Dans ce cas, l’unité qui s’active ignore le mot-clé IA pendant son activation.", 
 
 "OBSERVE X - SURVEILLANCE X": "En tant qu'action de carte ou action de carte gratuite, une unité dotée de CE mot-clé peut choisir une unité ennemie à [RANGE 3] et en LdV. <br>L'unité ennemie choisie gagne X [OBSERVATION]. Les [OBSERVATION] sont retirés pendant l'étape « Retirer les pions » de la Phase Finale. <br><br>Pendant une attaque, une unité attaquante alliée peut dépenser n'importe quel nombre de [OBSERVATION] qui appartiennent à l'unité en défense au cours de l'étape « Relancer les dés d'attaque ». <br>L'unité attaquante relance un dé d'attaque pour chaque [OBSERVATION] dépensé. <br>Les [OBSERVATION] sont dépensés un par un, et un même dé peut être relancé plusieurs fois en dépensant des [OBSERVATION] ou [AIM] en conséquence. <br>L'unité attaquante peut dépenser des [AIM] et [OBSERVATION] dans n'importe quel ordre.", 
 
