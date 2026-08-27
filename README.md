@@ -1,4 +1,4 @@
-# 📖 Codex Xesh
+# Codex Xesh
 
 **Aide de jeu pour Star Wars: Légion.**
 
@@ -8,14 +8,14 @@ Codex Xesh est une application web légère et rapide conçue pour les joueurs d
 
 ---
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 * 🔍 **Recherche instantanée :** Trouvez rapidement un mot-clé grâce à la barre de recherche prédictive.
 * **Application Web Progressive (PWA) :** Installable directement sur l'écran d'accueil de votre smartphone pour une utilisation fluide, comme une application native.
 * **100% Hors-ligne :** Une fois chargée une première fois, l'application fonctionne sans aucune connexion internet (idéal pour les salles de tournoi, les associations ou les boutiques avec peu de réseau !).
 * **Formatage enrichi :** Intégration visuelle des PIONS/TOKENS du jeu directement dans le texte pour une lecture claire et intuitive.
 
-## 🚀 Installation (Mobile)
+## Installation (Mobile)
 
 Pour la meilleure expérience autour de la table de jeu ou de vos décors, il est recommandé d'installer Codex Xesh sur votre téléphone :
 
@@ -24,13 +24,13 @@ Pour la meilleure expérience autour de la table de jeu ou de vos décors, il es
 3. Sélectionnez **"Ajouter à l'écran d'accueil"**.
 4. L'icône du triangle de l'Escouade Xesh apparaîtra sur votre téléphone, prête à être lancée sans connexion !
 
-## 🛠️ Aspect Technique
+## Aspect Technique
 
 * Base de données consultable côté client (HTML/CSS/JavaScript Vanilla).
 * Utilisation de Service Workers et d'un fichier Manifest pour la mise en cache et le fonctionnement PWA.
 * Hébergé sur GitHub Pages.
 
-## 💬 Retours et Contact
+## Retours et Contact
 
 Ce projet est mis à jour régulièrement pour suivre les évolutions des règles officielles. Si vous remarquez une coquille, un mot-clé manquant, ou si vous avez une idée d'amélioration, n'hésitez pas à me contacter :
 
@@ -38,3 +38,6 @@ Ce projet est mis à jour régulièrement pour suivre les évolutions des règle
 
 ---
 *Développé par Thoutoum pour la communauté Star Wars: Légion.*
+
+## 📄 Licence
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
